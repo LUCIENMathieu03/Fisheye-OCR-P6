@@ -1,0 +1,18 @@
+@import "./reset.scss";
+
+// legacy code below ( meant to be refactor ) 
+// style.css 
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+h1 {
+    color: #901C1C;
+    margin-right: 100px;
+}
+
+.logo {
+    height: 50px;
+    margin-left: 100px;
+}
