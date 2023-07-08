@@ -1,24 +1,62 @@
+header {
+
+  .pageTitle{
+    font-size: 36px;
+  }
+
+}
+
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
   margin-top: 100px;
+  margin-bottom: 100px;
+
+  article {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  article h2 {
+    color: #D3573C;
+    font-size: 36px;
+    margin-top: 20px;
+  }
+
+  article img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit:cover;
+  }
+  article .description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+
+    & .firstLine{
+      color: #D3573C;
+      font-size: 13px;
+    }
+
+    & .price{
+      font-size:9px;
+      color: #757575;
+    }
+
+    p{
+      margin-bottom: 3px;
+    }
+  }
 }
 
-.photographer_section article {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
 
-.photographer_section article h2 {
-  color: #D3573C;
-  font-size: 36px;
-}
 
-.photographer_section article img {
-  height: 200px;
-  width: 200px;
-}
+
+
