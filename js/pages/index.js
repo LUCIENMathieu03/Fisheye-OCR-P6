@@ -8,7 +8,7 @@ class App{
         photographers
         .map(photographer => new Photographer(photographer))  
         .forEach((photographer) => {
-            const photographerToDisplay = new photographerTemplate(photographer); // la factory sera appeler ici pour choisir le bon template a appeler
+            const photographerToDisplay = new PhotographerFactory(photographer, "photographerPresentation");
             const userCardDOM = photographerToDisplay.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);
         });
