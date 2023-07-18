@@ -1,9 +1,13 @@
-async function getPhotographers() {
+class photographersApi {
+    constructor(url){
+        this._url = url;
+    }
 
-    const res = await fetch("./data/photographers.json")
-    const data = await res.json()
-    
-    return({
-        data: data
-    })
+    async getPhotographers(){
+        const res = await fetch(this._url);
+        const data = await res.json()
+        
+        return data;
+    }
+
 }

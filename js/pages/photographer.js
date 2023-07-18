@@ -4,8 +4,9 @@ const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id')
 
 async function getPhotographerData() {
-
-    const {data} = await getPhotographers()
+    const photographerApi = new photographersApi("./data/photographers.json");
+    const data = await photographerApi.getPhotographers();
+    
     let photographerData =  null;
     let photographerMedias = [];
 
@@ -33,5 +34,9 @@ async function main (){
     const { photographerData,  photographerMedias } = await getPhotographerData();
     console.log(photographerData);
     console.log(photographerMedias);
+
+    // displaydata comme dans index.js (on peu l'appeler diplayPhotographerData)
+
+    //piste pour les template un constructeur peu returne qlqch (return le resultat d'une fonction?) // oublie on utilise des class mtn donc on en aura pas besoin
 }
 main()

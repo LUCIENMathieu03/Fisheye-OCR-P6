@@ -1,19 +1,25 @@
+class App{
+    constructor(){
+        this.photographersSection = document.querySelector(".photographer_section");
+        this.photographerApi = new photographersApi("./data/photographers.json");
+    }
 
-async function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
+    async displayData(photographers) {
+        photographers
+        .map(photographer => new Photographer(photographer))  
+        .forEach((photographer) => {
+            const photographerToDisplay = new photographerTemplate(photographer); // la factory sera appeler ici pour choisir le bon template a appeler
+            const userCardDOM = photographerToDisplay.getUserCardDOM();
+            this.photographersSection.appendChild(userCardDOM);
+        });
+    }
 
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
-    });
+    async main(){
+        const photographersData = await this.photographerApi.getPhotographers();
+        this.displayData(photographersData.photographers);
+    }
 }
 
-async function init() {
-    // Récupère les datas des photographes
-    const { data } = await getPhotographers();
-    displayData(data.photographers);
-}
 
-init();
-    
+const app =  new App();
+app.main();
