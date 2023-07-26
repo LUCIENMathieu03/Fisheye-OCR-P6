@@ -1,7 +1,10 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-const photographerId = urlParams.get('id')
+const photographerId = urlParams.get('id');
+
+const photographHeader =  document.querySelector('.photograph-header');
+const photographMedia =  document.querySelector('.media-section');
 
 async function getPhotographerData() {
     const photographerApi = new photographersApi("./data/photographers.json");
@@ -12,7 +15,7 @@ async function getPhotographerData() {
 
     for(const photographer of data.photographers) {
         if(photographer.id == photographerId){
-            photographerData = photographer
+            photographerData = photographer;
             break;
         }
     }
@@ -24,19 +27,37 @@ async function getPhotographerData() {
     }
 
     return ({
-        photographerData : photographerData,
-        photographerMedias : photographerMedias,
+        photographData : photographerData,
+        photographMedias : photographerMedias,
     })
 }
 
+async function diplayPhotographerHeader(photographer){
+
+    const photograph = new Photographer(photographer);
+    const photographerToDisplay = new PhotographerTemplateFactory(photograph, "photographerPage");
+    const photographHeaderDom = photographerToDisplay.getPhotographHeader();
+    photographHeader.appendChild(photographHeaderDom);
+
+}
+
+async function diplayPhotographerMedia(photographerMedia, name){
+    ///  appel de la factory pour afficher le bon template;
+    const PhotographName = name;
+    photographerMedia
+        .forEach((photo) => {
+            const photographerToDisplay = new photographPageTemplate(photo, PhotographName);
+            const thephoto = photographerToDisplay.getPhotographMedia();
+            photographMedia.appendChild(thephoto);
+        });
+}
 
 async function main (){
-    const { photographerData,  photographerMedias } = await getPhotographerData();
-    console.log(photographerData);
-    console.log(photographerMedias);
+    const { photographData,  photographMedias } = await getPhotographerData();
+    console.log(photographData);
+    console.log(photographMedias);
 
-    // displaydata comme dans index.js (on peu l'appeler diplayPhotographerData)
-
-    //piste pour les template un constructeur peu returne qlqch (return le resultat d'une fonction?) // oublie on utilise des class mtn donc on en aura pas besoin
+    diplayPhotographerHeader(photographData);
+    diplayPhotographerMedia(photographMedias, photographData.name)
 }
-main()
+main();

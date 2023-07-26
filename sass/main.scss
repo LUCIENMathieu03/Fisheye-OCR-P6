@@ -4,11 +4,12 @@
 @import "./base/base.scss";
 
 //components
-
+@import "./components/heart.scss";
 //layout
 @import "./layout/header.scss";
 
 //pages
 @import "./page/homepage.scss";
+@import "./page/photographer.scss";
 
 

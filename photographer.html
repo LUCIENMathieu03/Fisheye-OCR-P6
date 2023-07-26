@@ -12,24 +12,22 @@
   </head>
   <body>
     <header>
+      <!-- rediriger vers la page d'accueil -->
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
-      </div>
-      <div>
+      <div class="photograph-header"> </div>
+      <div class="filter">
         <p>Trier par :</p>
         <div>
           <p>
-            popularité etc... faudra trouver un moyen pour faire ca, chaque div
+            <!-- popularité etc... faudra trouver un moyen pour faire ca, chaque div
             aurons des value mais ce n'est pas posible de faire ça avec un
-            select
+            select -->
           </p>
         </div>
       </div>
+      <div class="media-section"> </div>
     </main>
     <div id="contact_modal">
       <div class="modal">
@@ -47,8 +45,14 @@
         </form>
       </div>
     </div>
-    <script src="/js/utils/contactForm.js"></script>
-    <script src="/js/utils/api.js"></script>
-    <script src="/js/pages/photographer.js"></script>
+    <script src="js/factories/PhotographerFactory.js"></script>
+
+    <script src="js/models/Photographer.js"></script>
+    
+    <script src="js/templates/photographPage.js"></script>
+    <script src="js/utils/contactForm.js"></script>
+    <script src="js/utils/api.js"></script>
+    <script src="js/pages/photographer.js"></script>
+    <script src="https://kit.fontawesome.com/2f81acc905.js" crossorigin="anonymous"></script>
   </body>
 </html>
