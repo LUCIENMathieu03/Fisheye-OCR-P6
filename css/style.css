@@ -158,10 +158,6 @@ header .pageTitle {
   margin-bottom: 3px;
 }
 
-#contact_modal {
-  display: none;
-}
-
 .photograph-header {
   background-color: #FAFAFA;
   height: 300px;
@@ -261,16 +257,27 @@ header .pageTitle {
   cursor: pointer;
 }
 
+#contact_modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(196, 196, 196, 0.4);
+}
+
 .modal {
   border-radius: 5px;
   background-color: #DB8876;
   width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   padding: 35px;
-  margin: auto;
+  margin: 5% auto;
 }
 .modal header {
   justify-content: space-between;
@@ -284,19 +291,22 @@ header .pageTitle {
   font-weight: normal;
   text-align: center;
 }
+.modal h2 {
+  font-size: 64px;
+  font-weight: 400;
+}
 
 form {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 19px;
 }
-
 form label {
   color: #312E2E;
   font-size: 36px;
 }
-
 form div {
   display: flex;
   flex-direction: column;
@@ -304,12 +314,62 @@ form div {
   align-items: self-start;
   margin-bottom: 26px;
 }
-
 form input {
   width: 100%;
   height: 68px;
   border: none;
   border-radius: 5px;
+  font-size: 36px;
+}
+form textarea {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  width: 100%;
+  height: 170px;
+  border: none;
+  border-radius: 5px;
+  font-size: 36px;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes reversemodalopen {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+}
+@keyframes modalclose {
+  from {
+    opacity: 1;
+    display: block;
+  }
+  to {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+}
+@keyframes bgmodalopen {
+  0% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

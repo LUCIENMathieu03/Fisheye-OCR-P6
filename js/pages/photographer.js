@@ -1,8 +1,6 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-
 const photographerId = urlParams.get('id');
-
 const photographHeader =  document.querySelector('.photograph-header');
 const photographMedia =  document.querySelector('.media-section');
 

@@ -12,8 +12,9 @@
   </head>
   <body>
     <header>
-      <!-- rediriger vers la page d'accueil -->
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html">
+        <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+      </a> 
     </header>
     <main id="main">
       <div class="photograph-header"> </div>
@@ -29,6 +30,7 @@
       </div>
       <div class="media-section"> </div>
     </main>
+
     <div id="contact_modal">
       <div class="modal">
         <header>
@@ -36,11 +38,26 @@
           <!-- mettre une div avec id ou class pour inserer le nom du photographe  -->
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
+        <h2>Nom du photographe</h2>
         <form>
           <div>
             <label>Prénom</label>
             <input />
           </div>
+          <div>
+            <label>Nom</label>
+            <input />
+          </div>
+          <div>
+            <label>Email</label>
+            <input />
+          </div>
+          <div>
+            <label>Votre message</label>
+            <textarea rows="5">
+            </textarea>
+          </div>
+          
           <button class="contact_button">Envoyer</button>
         </form>
       </div>

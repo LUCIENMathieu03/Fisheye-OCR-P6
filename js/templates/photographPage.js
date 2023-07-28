@@ -70,4 +70,4 @@ class photographPageTemplate{
         return (article);
     }
 
-}
+} 
