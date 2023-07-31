@@ -21,8 +21,9 @@ class photographPageTemplate{
     
         h2.textContent = this.photographerDatas.name;
 
-        contactButton.textContent = "Contactez-moi";
+        contactButton.innerHTML = "Contactez-moi";
         contactButton.classList.add("contact_button");
+        contactButton.classList.add("button");
         contactButton.setAttribute("onClick", "displayModal()")
         
         presentationText.appendChild(h2);

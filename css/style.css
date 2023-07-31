@@ -102,6 +102,19 @@ h1 {
   font-size: 21px;
 }
 
+.button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -244,20 +257,7 @@ header .pageTitle {
   color: #901C1C;
 }
 
-.contact_button {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901C1C;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#contact_modal {
+.contact_modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -267,6 +267,15 @@ header .pageTitle {
   width: 100%;
   overflow: auto;
   background-color: rgba(196, 196, 196, 0.4);
+  /* animation ouverture fermeture de la modale */
+}
+.contact_modal--close {
+  display: block;
+  animation: bgmodalclose 0.5s both;
+}
+.contact_modal--open {
+  animation: bgmodalopen 0.5s both;
+  display: block;
 }
 
 .modal {
@@ -278,6 +287,7 @@ header .pageTitle {
   justify-content: space-between;
   padding: 35px;
   margin: 5% auto;
+  /* animation ouverture fermeture de la modale */
 }
 .modal header {
   justify-content: space-between;
@@ -294,6 +304,12 @@ header .pageTitle {
 .modal h2 {
   font-size: 64px;
   font-weight: 400;
+}
+.modal--close {
+  animation: reversemodalopen 0.8s both;
+}
+.modal--open {
+  animation: modalopen 0.8s both;
 }
 
 form {
@@ -349,7 +365,7 @@ form textarea {
     transform: translateY(-150px);
   }
 }
-@keyframes modalclose {
+@keyframes bgmodalclose {
   from {
     opacity: 1;
     display: block;

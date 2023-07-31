@@ -88,20 +88,7 @@
     }
 }
 
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#contact_modal {
+.contact_modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -110,8 +97,20 @@
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: #C4C4C466
+    background-color: #C4C4C466;
+
+    /* animation ouverture fermeture de la modale */
+    &--close {
+        display: block;
+        animation: bgmodalclose 0.5s both;
+    }
+    &--open {
+        animation: bgmodalopen 0.5s both;
+        display: block;
+    }
+    
 }
+
 
 .modal {
     border-radius: 5px;
@@ -122,18 +121,6 @@
     justify-content: space-between;
     padding: 35px;
     margin: 5% auto;
-
-    // .content {
-    //     margin: 5% auto;
-    //     width: 100%;
-    //     max-width: 500px;
-    //     background: #232323;
-    //     border-radius: 10px;
-    //     overflow: hidden;
-    //     position: relative;
-    //     color: #fff;
-    //     padding-top: 10px;
-    //   }
 
     header {
         justify-content: space-between;
@@ -152,6 +139,13 @@
     h2{
         font-size: 64px;
         font-weight: 400;
+    }
+    /* animation ouverture fermeture de la modale */
+    &--close {
+        animation: reversemodalopen 0.8s both;
+    }
+    &--open {
+        animation: modalopen 0.8s both;
     }
 } 
  
@@ -216,7 +210,7 @@ form {
     }
   }
   
-  @keyframes modalclose {
+  @keyframes bgmodalclose {
     from {
       opacity: 1;
       display: block;

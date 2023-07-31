@@ -3,6 +3,9 @@ const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
 const photographHeader =  document.querySelector('.photograph-header');
 const photographMedia =  document.querySelector('.media-section');
+const contactButton = document.querySelector('.contact_button');
+
+
 
 async function getPhotographerData() {
     const photographerApi = new photographersApi("./data/photographers.json");
@@ -37,6 +40,9 @@ async function diplayPhotographerHeader(photographer){
     const photographHeaderDom = photographerToDisplay.getPhotographHeader();
     photographHeader.appendChild(photographHeaderDom);
 
+    //add photograph name in modal
+    document.querySelector('.photographName').textContent=photographer.name;
+
 }
 
 async function diplayPhotographerMedia(photographerMedia, name){
@@ -50,12 +56,20 @@ async function diplayPhotographerMedia(photographerMedia, name){
         });
 }
 
+
 async function main (){
     const { photographData,  photographMedias } = await getPhotographerData();
     console.log(photographData);
     console.log(photographMedias);
 
     diplayPhotographerHeader(photographData);
-    diplayPhotographerMedia(photographMedias, photographData.name)
+    diplayPhotographerMedia(photographMedias, photographData.name);
+
+    document.querySelector('.send_button').addEventListener('click',(e)=>{
+        e.preventDefault();
+        console.log('coucou');
+    })
+
 }
+
 main();
