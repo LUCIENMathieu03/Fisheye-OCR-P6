@@ -220,9 +220,11 @@ header .pageTitle {
   gap: 95px;
   margin: 100px 100px;
   margin-top: 58px;
+  position: relative;
 }
 .media-section article {
   color: #901C1C;
+  cursor: pointer;
 }
 .media-section article img {
   width: 100%;
@@ -255,6 +257,24 @@ header .pageTitle {
 }
 .media-section article .description .likes svg {
   color: #901C1C;
+}
+.media-section .allLikes {
+  position: fixed;
+  bottom: 0px;
+  right: 36px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 376px;
+  height: 70px;
+  background: #DB8876;
+  border-radius: 5px 5px 0 0;
+}
+.media-section .allLikes span {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .contact_modal {

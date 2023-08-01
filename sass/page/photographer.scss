@@ -50,9 +50,11 @@
     gap: 95px;
     margin: 100px 100px;
     margin-top: 58px;
+    position: relative;
 
     article{
         color: #901C1C;
+        cursor: pointer;
     }
     article img {
         width: 100%;
@@ -85,6 +87,25 @@
     }
     article .description .likes svg{
         color: #901C1C
+    }
+
+    .allLikes{
+        position: fixed;
+        bottom: 0px;
+        right: 36px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 376px;
+        height: 70px;
+        background: #DB8876;
+        border-radius: 5px 5px 0 0;
+    }
+    .allLikes span{
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 500;
     }
 }
 

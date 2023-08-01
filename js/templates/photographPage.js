@@ -1,7 +1,8 @@
 class photographPageTemplate{
-    constructor(photographerDatas, name){
+    constructor(photographerDatas, photographMedias,id){
         this.photographerDatas = photographerDatas;
-        this._name = name
+        this.photographMedias= photographMedias;
+        this.photoId = id
     }
 
     getPhotographHeader(){
@@ -45,30 +46,40 @@ class photographPageTemplate{
         var img = null;
         var video = null;
 
-        if(this.photographerDatas.image){
+        if(this.photographMedias.image){
             img = document.createElement( 'img' );
-            img.setAttribute("src", `assets/SamplePhotos/${this._name}/${this.photographerDatas.image}`)
+            img.setAttribute("src", `assets/SamplePhotos/${this.photographerDatas.name}/${this.photographMedias.image}`)
             article.appendChild(img);
         }else{
             video = document.createElement( 'video' );
             video.setAttribute("controls",'')
-            video.innerHTML = `<source src='assets/SamplePhotos/${this._name}/${this.photographerDatas.video}' type=video/mp4>`
+            video.innerHTML = `<source src='assets/SamplePhotos/${this.photographerDatas.name}/${this.photographMedias.video}' type=video/mp4>`
             article.appendChild(video);
         }
 
-        imageTitle.textContent = `${this.photographerDatas.title}`
+        imageTitle.textContent = `${this.photographMedias.title}`
 
         imagelike.classList.add('likes');
-        imagelike.innerHTML = `<p>${this.photographerDatas.likes}</p><i class="fa-solid fa-heart heart"></i>`
+        imagelike.innerHTML = `<p>${this.photographMedias.likes}</p><i class="fa-solid fa-heart heart"></i>`
 
         imgDescription.classList.add('description');
         imgDescription.appendChild(imageTitle)
         imgDescription.appendChild(imagelike)
 
-        
+        article.setAttribute("id",`${this.photoId}`);
         article.appendChild(imgDescription);
 
         return (article);
     }
+
+    // getPhotographLikeTjm(){
+    //     const likeContainer = document.createElement('div');
+    //     const likeNumber = document.createElement( 'span' );
+    //     const tjm = document.createElement( 'span' );
+
+    //     likeContainer.classList.add('allLikes');
+
+        
+    // }
 
 } 

@@ -8,7 +8,6 @@
 //     modal.style.display = "none";
 // }
 
-
 const modalBg = document.querySelector(".contact_modal");
 const modal = document.querySelector(".modal");
 

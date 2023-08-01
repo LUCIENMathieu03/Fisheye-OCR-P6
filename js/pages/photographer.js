@@ -45,17 +45,51 @@ async function diplayPhotographerHeader(photographer){
 
 }
 
-async function diplayPhotographerMedia(photographerMedia, name){
-    ///  appel de la factory pour afficher le bon template;
-    const PhotographName = name;
-    photographerMedia
+async function diplayPhotographerMedia(photographData, photographMedias){
+    ///  appel de la factory pour afficher le bon template; ???
+    let id=0;
+    photographMedias
         .forEach((photo) => {
-            const photographerToDisplay = new photographPageTemplate(photo, PhotographName);
+            const photographerToDisplay = new photographPageTemplate(photographData,photo,id);
             const thephoto = photographerToDisplay.getPhotographMedia();
             photographMedia.appendChild(thephoto);
+            id= id +1;
         });
 }
 
+async function displayLikeTjm(photographData, photographMedias){
+    let allLike = 0;
+
+    photographMedias.forEach((photo)=>{
+        allLike += parseInt(photo.likes);
+    })
+
+    const likeContainer = document.createElement('div');
+    const likeNumber = document.createElement( 'span' );
+    const tjm = document.createElement( 'span' );
+
+    likeContainer.classList.add('allLikes');
+
+    likeNumber.innerHTML =`<p>${allLike} <i class="fa-solid fa-heart heart"></i></p>`;
+    tjm.innerHTML=`${photographData.price}€ / jour`;
+
+    likeContainer.appendChild(likeNumber);
+    likeContainer.appendChild(tjm);
+
+    photographMedia.appendChild(likeContainer);
+
+}
+
+async function lightBox(photographMedias){
+    let photosData = [...photographMedias];
+    const photos = document.querySelectorAll('.media-section article');
+    photos.forEach((photo)=>{
+        photo.addEventListener("click",(e)=>{
+            console.log('coucou');
+        })
+    })
+
+}
 
 async function main (){
     const { photographData,  photographMedias } = await getPhotographerData();
@@ -63,13 +97,15 @@ async function main (){
     console.log(photographMedias);
 
     diplayPhotographerHeader(photographData);
-    diplayPhotographerMedia(photographMedias, photographData.name);
+    diplayPhotographerMedia(photographData, photographMedias);
+    displayLikeTjm(photographData, photographMedias);
+    
 
     document.querySelector('.send_button').addEventListener('click',(e)=>{
         e.preventDefault();
-        console.log('coucou');
-    })
+    });
 
+    lightBox(photographMedias)
 }
 
 main();
