@@ -91,6 +91,7 @@ function lightBox(photographData, photographMedias){
 
     controls.forEach(arrow => {
         arrow.addEventListener("click", ()=>{
+            RefreshDomImg()
             findCurrentImgIndex();
             // arrowVisibility(currentImgIndex);
             if(arrow.classList.contains('fa-angle-left')){
@@ -161,6 +162,53 @@ function RefreshDomImg(){
     domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
 }
 
+function filter(photographData,photographMedias){
+    let medias = [...photographMedias];
+    console.log(medias);
+    const popularity = document.querySelector('.filter__popularity')
+    const date = document.querySelector('.filter__date')
+    const title = document.querySelector('.filter__title')
+
+    popularity.addEventListener('click', ()=>{
+        medias.sort(function(a, b){return b.likes - a.likes});
+        RefreshDomImg()
+        photographMedia.innerHTML=""
+        diplayPhotographerMedia(photographData, medias);
+        lightBox(photographData, photographMedias);
+    })
+    
+    title.addEventListener('click', ()=>{
+        medias.sort(function(a, b){
+            let x = a.title.toLowerCase();
+            let y = b.title.toLowerCase();
+            if (x < y) {return -1;}
+            if (x > y) {return 1;}
+            return 0;
+        });
+        RefreshDomImg()
+        photographMedia.innerHTML=""
+        diplayPhotographerMedia(photographData, medias);
+        lightBox(photographData, photographMedias);
+    })
+    
+    date.addEventListener('click', ()=>{
+        medias.sort(function(a, b){
+            const d1 = Date.parse(a.date);
+            const d2 = Date.parse(b.date);
+            console.log(d1)
+            if (d1 < d2) {return -1;}
+            if (d1 > d2) {return 1;}
+            return 0;
+        });
+        RefreshDomImg()
+        photographMedia.innerHTML=""
+        diplayPhotographerMedia(photographData, medias);
+        lightBox(photographData, photographMedias);
+    })
+
+
+}
+
 async function main (){
     const { photographData,  photographMedias } = await getPhotographerData();
 
@@ -168,6 +216,8 @@ async function main (){
     diplayPhotographerMedia(photographData, photographMedias);
     displayLikeTjm(photographData, photographMedias);
     lightBox(photographData, photographMedias);
+    filter(photographData,photographMedias)
+
 }
 
 main();
