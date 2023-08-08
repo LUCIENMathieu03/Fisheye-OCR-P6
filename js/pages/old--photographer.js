@@ -5,7 +5,6 @@ const photographHeader =  document.querySelector('.photograph-header');
 const photographMedia =  document.querySelector('.media-section');
 const contactButton = document.querySelector('.contact_button');
 
-let domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
 
 
 async function getPhotographerData() {
@@ -34,46 +33,44 @@ async function getPhotographerData() {
     })
 }
 
-function diplayPhotographerHeader(photographData){
+function diplayPhotographerHeader(photographer){
 
-    const photograph = new PhotographerPage(photographData);
+    const photograph = new Photographer(photographer);
     const photographerToDisplay = new PhotographerTemplateFactory(photograph, "photographerPage");
     const photographHeaderDom = photographerToDisplay.getPhotographHeader();
     photographHeader.appendChild(photographHeaderDom);
 
     //add photograph name in modal
-    document.querySelector('.photographName').textContent = photographData.name;
+    document.querySelector('.photographName').textContent=photographer.name;
 
 }
 
 function diplayPhotographerMedia(photographData, photographMedias){
+    ///  appel de la factory pour afficher le bon template; ???
     photographMedias
-        .map(media => new PhotographerPage(photographData,media))
-        .forEach((formatedMedia) => {
-            const photoToDisplay = new PhotographerTemplateFactory(formatedMedia, "photographerPage");
+        .forEach((photo) => {
+            const photoToDisplay = new photographPageTemplate(photographData,photo);
             const thephoto = photoToDisplay.getPhotographMedia();
             photographMedia.appendChild(thephoto);
         });
 }
 
 function displayLikeTjm(photographData, photographMedias){
-    let allLikes = 0;
+    let allLike = 0;
 
     photographMedias.forEach((photo)=>{
-        allLikes += parseInt(photo.likes);
-
+        allLike += parseInt(photo.likes);
     })
 
-    const photograph = new PhotographerPage(photographData, undefined, allLikes);
-    const likeToDisplay = new PhotographerTemplateFactory(photograph, "photographerPage");
+    const likeToDisplay = new photographPageTemplate(photographData, undefined, allLike);
     const likeDom = likeToDisplay.getPhotographLikeTjm();
 
     photographMedia.appendChild(likeDom);
 
 }
 
-function lightBox(photographData, photographMedias){
-    RefreshDomImg()
+async function lightBox(photographData, photographMedias){
+    const domImages = [...document.querySelectorAll('.media-section article')] // done this way to manipulate the elements in a array
     const controls = document.querySelectorAll('.lightBox__contentCarrousel i');
     let imgToDisplay = null;
     let currentImgIndex = null; // the id in the domImages table of the image displayed
@@ -142,8 +139,7 @@ function lightBox(photographData, photographMedias){
     }
 
     const displayImgLightbox = (photographData, imgToDisplay) => {
-        const photograph = new PhotographerPage(photographData, imgToDisplay)
-        const lightBox = new PhotographerTemplateFactory(photograph,"photographerPage");
+        const lightBox = new photographPageTemplate(photographData, imgToDisplay);
         const title = document.querySelector('.lightBox__contentTitle');
         const lightBoxImg = document.querySelector('.lightBox__contentCarrouselImg');
         
@@ -155,10 +151,6 @@ function lightBox(photographData, photographMedias){
         title.textContent= imgToDisplay.title
     }
 
-}
-
-function RefreshDomImg(){
-    domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
 }
 
 async function main (){

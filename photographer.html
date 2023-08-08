@@ -26,6 +26,9 @@
             aurons des value mais ce n'est pas posible de faire ça avec un
             select -->
           </p>
+          <input class="button" type="button" value="popularité">
+          <input class="button" type="button" value="date">
+          <input class="button" type="button" value="Titre">
         </div>
       </div>
       <div class="media-section"> </div>
@@ -37,7 +40,7 @@
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-        <h2 class="photographName">Nom du photographe</h2>
+        <h2 class="photographName"></h2>
         <form>
           <div>
             <label>Prénom</label>
@@ -56,16 +59,29 @@
             <textarea></textarea>
           </div>
           
-          <button class="button send_button">Envoyer</button>
+          <button class="button modalSendButton">Envoyer</button>
         </form>
+      </div>
+    </div>
+    <div class="lightBox">
+      <div class="lightBox__content">
+        <div class="lightBox__contentCarrousel">
+          <i class="fa-solid fa-angle-left lightBox__contentIcon arrow"></i>
+          <div class="lightBox__contentCarrouselImg">
+            <img src="assets/SamplePhotos/Marcel/Architecture_Corner_Room.jpg">
+          </div>
+          <i class="fa-solid fa-angle-right lightBox__contentIcon arrow"></i>
+        </div>
+        <i class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross" onclick="closeLightbox()"></i>
+        <span class="lightBox__contentTitle">blabla</span>
       </div>
     </div>
     <script src="js/factories/PhotographerFactory.js"></script>
 
-    <script src="js/models/Photographer.js"></script>
+    <script src="js/models/PhotographerPage.js"></script>
     
     <script src="js/templates/photographPage.js"></script>
-    <script src="js/utils/eventListener.js"></script>
+    <script src="js/utils/lightBox.js"></script>
     <script src="js/utils/contactForm.js"></script>
     <script src="js/utils/api.js"></script>
     <script src="js/pages/photographer.js"></script>

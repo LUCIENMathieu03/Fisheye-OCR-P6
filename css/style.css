@@ -114,6 +114,9 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
 }
+.button:hover {
+  background-color: #e16464;
+}
 
 header {
   display: flex;
@@ -332,6 +335,13 @@ header .pageTitle {
   animation: modalopen 0.8s both;
 }
 
+.bodyModal__open {
+  overflow: hidden;
+}
+.bodyModal__close {
+  overflow: auto;
+}
+
 form {
   display: flex;
   width: 100%;
@@ -365,6 +375,68 @@ form textarea {
   border: none;
   border-radius: 5px;
   font-size: 36px;
+}
+
+.lightBox {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+  overflow: scroll;
+  align-items: center;
+  justify-content: center;
+}
+.lightBox__open {
+  display: flex;
+  animation: lightBoxOpen 0.5s both;
+}
+.lightBox__close {
+  display: none;
+  animation: lightBoxClose 0.5s both;
+}
+.lightBox__content {
+  position: relative;
+}
+.lightBox__contentCarrousel {
+  display: flex;
+  align-items: center;
+}
+.lightBox__contentCross {
+  position: absolute;
+  right: 30px;
+  top: 0px;
+}
+.lightBox__contentIcon {
+  color: #901C1C;
+  font-size: 48px;
+  cursor: pointer;
+}
+.lightBox .arrow {
+  padding: 0px 30px;
+}
+.lightBox .arrow--last {
+  visibility: hidden;
+}
+.lightBox__contentCarrouselImg img {
+  object-fit: contain;
+  height: 900px;
+  border-radius: 5px;
+}
+.lightBox__contentCarrouselImg video {
+  object-fit: contain;
+  height: 900px;
+  border-radius: 5px;
+}
+.lightBox__contentTitle {
+  margin-top: 12px;
+  padding-left: 94px;
+  font-weight: 400;
+  font-size: 24px;
+  color: #901C1C;
 }
 
 @keyframes modalopen {
@@ -405,6 +477,28 @@ form textarea {
   100% {
     opacity: 1;
     display: block;
+  }
+}
+@keyframes lightBoxOpen {
+  0% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    display: flex;
+  }
+}
+@keyframes lightBoxClose {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
   }
 }
 

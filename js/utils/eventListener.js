@@ -1,1 +1,0 @@
-// const photos = document.querySelector('')

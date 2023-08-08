@@ -1,6 +1,8 @@
 class photographPageTemplate{
-    constructor(photographerPage){
-        this.photographerPage = photographerPage;
+    constructor(photographerDatas, photographMedia, allLike ){
+        this.photographerDatas = photographerDatas;
+        this.photographMedia= photographMedia;
+        this.allLike = allLike;
     }
 
     getPhotographHeader(){
@@ -11,12 +13,14 @@ class photographPageTemplate{
         const presentationText = document.createElement('div');
         const contactButton = document.createElement('button');
     
-        description.innerHTML= this.photographerPage.photographerPageDescription;
+        description.innerHTML += `<p class="firstLine">${this.photographerDatas.location}</p>`;
+        description.innerHTML += "</br>"
+        description.innerHTML += `<p class="tagLine">${this.photographerDatas.tagline}</p>`;
         description.classList.add("description")
     
-        img.setAttribute("src", this.photographerPage.picture)
+        img.setAttribute("src", this.photographerDatas.picture)
     
-        h2.textContent = this.photographerPage.name;
+        h2.textContent = this.photographerDatas.name;
 
         contactButton.innerHTML = "Contactez-moi";
         contactButton.classList.add("contact_button");
@@ -42,27 +46,27 @@ class photographPageTemplate{
         let img = null;
         let video = null;
 
-        if(this.photographerPage.media.image){
+        if(this.photographMedia.image){
             img = document.createElement( 'img' );
-            img.setAttribute("src", this.photographerPage.img)
+            img.setAttribute("src", `assets/SamplePhotos/${this.photographerDatas.name}/${this.photographMedia.image}`)
             article.appendChild(img);
         }else{
             video = document.createElement( 'video' );
             video.setAttribute("controls",'')
-            video.innerHTML = this.photographerPage.video;
+            video.innerHTML = `<source src='assets/SamplePhotos/${this.photographerDatas.name}/${this.photographMedia.video}' type=video/mp4>`
             article.appendChild(video);
         }
 
-        imageTitle.textContent = this.photographerPage.mediaTitle
+        imageTitle.textContent = `${this.photographMedia.title}`
 
         imagelike.classList.add('likes');
-        imagelike.innerHTML = this.photographerPage.mediaLikes
+        imagelike.innerHTML = `<p>${this.photographMedia.likes}</p><i class="fa-solid fa-heart heart"></i>`
 
         imgDescription.classList.add('description');
         imgDescription.appendChild(imageTitle)
         imgDescription.appendChild(imagelike)
 
-        article.setAttribute("id",`${this.photographerPage.media.id}`);
+        article.setAttribute("id",`${this.photographMedia.id}`);
         article.appendChild(imgDescription);
 
         return (article);
@@ -75,8 +79,8 @@ class photographPageTemplate{
 
         likeContainer.classList.add('allLikes');
 
-        likeNumber.innerHTML = this.photographerPage.allLikeNumber;
-        tjm.innerHTML= this.photographerPage.tjm;
+        likeNumber.innerHTML =`<p>${this.allLike} <i class="fa-solid fa-heart heart"></i></p>`;
+        tjm.innerHTML=`${this.photographerDatas.price}€ / jour`;
         
         
         likeContainer.appendChild(likeNumber);
@@ -86,16 +90,17 @@ class photographPageTemplate{
     }
     
     getLightBoxImg(){
-        if(this.photographerPage.media.image){
+        if(this.photographMedia.image){
             let img = document.createElement( 'img' );
-            img.setAttribute("src", this.photographerPage.img)
+            img.setAttribute("src", `assets/SamplePhotos/${this.photographerDatas.name}/${this.photographMedia.image}`)
             return(img);
         }else{
             let video = document.createElement( 'video' );
             video.setAttribute("controls",'')
-            video.innerHTML = this.photographerPage.video;
+            video.innerHTML = `<source src='assets/SamplePhotos/${this.photographerDatas.name}/${this.photographMedia.video}' type=video/mp4>`
             return(video);
-        }   
+        }
+        
     }
 
 } 

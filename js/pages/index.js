@@ -4,7 +4,7 @@ class App{
         this.photographerApi = new photographersApi("./data/photographers.json");
     }
 
-    async displayData(photographers) {
+    displayData(photographers) {
         photographers
         .map(photographer => new Photographer(photographer))  
         .forEach((photographer) => {

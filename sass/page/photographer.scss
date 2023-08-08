@@ -67,6 +67,7 @@
         height: 300px;
         object-fit:cover;
         border-radius: 5px;
+        //pointer-events: none;
     }
     article .description{
         display: flex;
@@ -132,7 +133,6 @@
     
 }
 
-
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -169,7 +169,14 @@
         animation: modalopen 0.8s both;
     }
 } 
- 
+.bodyModal{ //to block the scroll of the rest of the page
+    &__open{
+        overflow: hidden;
+    }
+    &__close{
+        overflow: auto;
+    }
+ }
 
 form {
     display: flex;
@@ -209,48 +216,138 @@ form {
     }
 }
 
+.lightBox{
+    &__open{
+        display: flex ;
+        animation: lightBoxOpen 0.5s both;
+    }
+    &__close{
+        display: none;
+        animation: lightBoxClose 0.5s both;
+    }
+    display: none ;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #FFF;
+    overflow: scroll;
+    align-items: center;
+    justify-content: center;
+
+    &__content{
+        position: relative;
+    }
+    &__contentCarrousel{
+        display: flex;
+        align-items: center;
+        
+    }
+    &__contentCross{
+        position: absolute;
+        right: 30px;
+        top:0px;
+        
+    }
+    &__contentIcon{
+        color: #901C1C;
+        font-size: 48px;
+        cursor: pointer;
+    }
+    .arrow{
+        padding: 0px 30px;
+        &--last{
+            visibility: hidden;
+        }
+    }
+    &__contentCarrouselImg img{
+        object-fit: contain;
+        height:900px;
+        border-radius:5px;
+    }
+    &__contentCarrouselImg video{
+        object-fit: contain;
+        height:900px;
+        border-radius:5px;
+    }
+    &__contentTitle{
+        margin-top:12px;
+        padding-left: 94px;
+        font-weight: 400;
+        font-size: 24px;
+        color:#901C1C;
+    }
+    
+}
+
+
 
 
 @keyframes modalopen {
     from {
-      opacity: 0;
-      transform: translateY(-150px);
+        opacity: 0;
+        transform: translateY(-150px);
     }
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
   
-  @keyframes reversemodalopen {
+@keyframes reversemodalopen {
     0%{
-      opacity: 1;
+        opacity: 1;
     }
     100%{
-      opacity: 0;
-      transform: translateY(-150px);
+        opacity: 0;
+        transform: translateY(-150px);
     }
-  }
-  
-  @keyframes bgmodalclose {
+}
+
+@keyframes bgmodalclose {
     from {
-      opacity: 1;
-      display: block;
+        opacity: 1;
+        display: block;
     }
     to {
-      opacity: 0;
-      display: none;
-      visibility: hidden;
+        opacity: 0;
+        display: none;
+        visibility: hidden;
     }
-  }
-  
-  @keyframes bgmodalopen {
+}
+
+@keyframes bgmodalopen {
     0% {
-      opacity: 0;
-      display: none;
-      visibility: hidden;
+        opacity: 0;
+        display: none;
+        visibility: hidden;
     }
     100% {
-      opacity: 1;
-      display: block;
+        opacity: 1;
+        display: block;
     }
-  }
+}
+
+@keyframes lightBoxOpen {
+    0% {
+        opacity: 0;
+        display: none;
+        visibility: hidden;
+    }
+    100%{
+        opacity: 1;
+        display: flex;
+    }
+}
+@keyframes lightBoxClose {
+    0% {
+        opacity: 1;
+        display: flex;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+        visibility: hidden;
+    }
+}
