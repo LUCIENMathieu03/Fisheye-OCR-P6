@@ -215,6 +215,10 @@ header .pageTitle {
   margin-top: 20px;
   font-size: 18px;
   font-weight: 700;
+  display: flex;
+}
+.filter p {
+  margin-right: 25px;
 }
 
 .media-section {

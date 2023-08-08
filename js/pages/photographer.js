@@ -83,7 +83,7 @@ function lightBox(photographData, photographMedias){
 
             findImgToDisplay(image);
             findCurrentImgIndex();
-            // arrowVisibility(currentImgIndex);
+            arrowVisibility(currentImgIndex);
             displayLightBox();
             displayImgLightbox(photographData, imgToDisplay); 
         })
@@ -93,7 +93,8 @@ function lightBox(photographData, photographMedias){
         arrow.addEventListener("click", ()=>{
             RefreshDomImg()
             findCurrentImgIndex();
-            // arrowVisibility(currentImgIndex);
+            arrowVisibility(currentImgIndex);
+            //console.log(currentImgIndex);
             if(arrow.classList.contains('fa-angle-left')){
                 if (currentImgIndex > 0 ) {
                     findImgToDisplay(domImages[currentImgIndex - 1]);
@@ -128,7 +129,7 @@ function lightBox(photographData, photographMedias){
     }
 
     const arrowVisibility = (index) => {
-        // console.log(currentImgIndex);
+        console.log(index);
         if (index === 0){
             controls[0].classList.add('arrow--last');
 
