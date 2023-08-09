@@ -98,6 +98,26 @@ h1 {
   margin-left: 100px;
 }
 
+.heart {
+  font-size: 21px;
+}
+
+.button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #e16464;
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -152,6 +172,338 @@ header .pageTitle {
 }
 .photographer_section article a .description p {
   margin-bottom: 3px;
+}
+
+.photograph-header {
+  background-color: #FAFAFA;
+  height: 300px;
+  margin: 0 100px;
+  display: flex;
+  align-items: center;
+}
+.photograph-header article {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.photograph-header article img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.photograph-header article .photographText h2 {
+  font-size: 64px;
+  font-weight: 400;
+  color: #D3573C;
+}
+.photograph-header article .photographText .description .firstLine {
+  font-weight: 400;
+  font-size: 24px;
+  color: #901C1C;
+}
+.photograph-header article .photographText .description .tagLine {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.filter {
+  margin: 0 100px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+}
+.filter p {
+  margin-right: 25px;
+}
+
+.media-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 95px;
+  margin: 100px 100px;
+  margin-top: 58px;
+  position: relative;
+}
+.media-section article {
+  color: #901C1C;
+  cursor: pointer;
+}
+.media-section article img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.media-section article video {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.media-section article .description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 24px;
+}
+.media-section article .description > p {
+  padding: 10px;
+}
+.media-section article .description .likes {
+  display: flex;
+  align-items: center;
+}
+.media-section article .description .likes p {
+  margin-right: 4px;
+}
+.media-section article .description .likes svg {
+  color: #901C1C;
+}
+.media-section .allLikes {
+  position: fixed;
+  bottom: 0px;
+  right: 36px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 376px;
+  height: 70px;
+  background: #DB8876;
+  border-radius: 5px 5px 0 0;
+}
+.media-section .allLikes span {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.contact_modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(196, 196, 196, 0.4);
+  /* animation ouverture fermeture de la modale */
+}
+.contact_modal--close {
+  display: block;
+  animation: bgmodalclose 0.5s both;
+}
+.contact_modal--open {
+  animation: bgmodalopen 0.5s both;
+  display: block;
+}
+
+.modal {
+  border-radius: 5px;
+  background-color: #DB8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 35px;
+  margin: 5% auto;
+  /* animation ouverture fermeture de la modale */
+}
+.modal header {
+  justify-content: space-between;
+  width: 100%;
+}
+.modal header img {
+  cursor: pointer;
+}
+.modal header h2 {
+  font-size: 64px;
+  font-weight: normal;
+  text-align: center;
+}
+.modal h2 {
+  font-size: 64px;
+  font-weight: 400;
+}
+.modal--close {
+  animation: reversemodalopen 0.8s both;
+}
+.modal--open {
+  animation: modalopen 0.8s both;
+}
+
+.bodyModal__open {
+  overflow: hidden;
+}
+.bodyModal__close {
+  overflow: auto;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 19px;
+}
+form label {
+  color: #312E2E;
+  font-size: 36px;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
+}
+form input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+  font-size: 36px;
+}
+form textarea {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  width: 100%;
+  height: 170px;
+  border: none;
+  border-radius: 5px;
+  font-size: 36px;
+}
+
+.lightBox {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+  overflow: scroll;
+  align-items: center;
+  justify-content: center;
+}
+.lightBox__open {
+  display: flex;
+  animation: lightBoxOpen 0.5s both;
+}
+.lightBox__close {
+  display: none;
+  animation: lightBoxClose 0.5s both;
+}
+.lightBox__content {
+  position: relative;
+}
+.lightBox__contentCarrousel {
+  display: flex;
+  align-items: center;
+}
+.lightBox__contentCross {
+  position: absolute;
+  right: 30px;
+  top: 0px;
+}
+.lightBox__contentIcon {
+  color: #901C1C;
+  font-size: 48px;
+  cursor: pointer;
+}
+.lightBox .arrow {
+  padding: 0px 30px;
+}
+.lightBox .arrow--last {
+  visibility: hidden;
+}
+.lightBox__contentCarrouselImg img {
+  object-fit: contain;
+  height: 900px;
+  border-radius: 5px;
+}
+.lightBox__contentCarrouselImg video {
+  object-fit: contain;
+  height: 900px;
+  border-radius: 5px;
+}
+.lightBox__contentTitle {
+  margin-top: 12px;
+  padding-left: 94px;
+  font-weight: 400;
+  font-size: 24px;
+  color: #901C1C;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes reversemodalopen {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+}
+@keyframes bgmodalclose {
+  from {
+    opacity: 1;
+    display: block;
+  }
+  to {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+}
+@keyframes bgmodalopen {
+  0% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+@keyframes lightBoxOpen {
+  0% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    display: flex;
+  }
+}
+@keyframes lightBoxClose {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

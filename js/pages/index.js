@@ -4,11 +4,11 @@ class App{
         this.photographerApi = new photographersApi("./data/photographers.json");
     }
 
-    async displayData(photographers) {
+    displayData(photographers) {
         photographers
         .map(photographer => new Photographer(photographer))  
         .forEach((photographer) => {
-            const photographerToDisplay = new photographerTemplate(photographer); // la factory sera appeler ici pour choisir le bon template a appeler
+            const photographerToDisplay = new PhotographerTemplateFactory(photographer, "photographerPresentation");
             const userCardDOM = photographerToDisplay.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);
         });

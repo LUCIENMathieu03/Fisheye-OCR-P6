@@ -27,4 +27,14 @@ class Photographer {
     get linkToPhotographerPage(){
         return `photographer.html?id=${this._id}`
     }
+
+    get location(){
+        return this._location
+    }
+    get tagline(){
+        return this._tagline
+    }
+    get cost(){
+        return this._cost
+    }
 }
