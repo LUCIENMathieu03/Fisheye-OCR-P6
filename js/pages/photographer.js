@@ -73,7 +73,7 @@ function displayLikeTjm(photographData, photographMedias){
 }
 
 function lightBox(photographData, photographMedias){
-    RefreshDomImg()
+    refreshDomImgTab()
     const controls = document.querySelectorAll('.lightBox__contentCarrousel i');
     let imgToDisplay = null;
     let currentImgIndex = null; // the id in the domImages table of the image displayed
@@ -82,7 +82,7 @@ function lightBox(photographData, photographMedias){
         image.addEventListener("click",(e)=>{
 
             findImgToDisplay(image);
-            findCurrentImgIndex();
+            refreshCurrentIndex();
             arrowVisibility(currentImgIndex);
             displayLightBox();
             displayImgLightbox(photographData, imgToDisplay); 
@@ -91,13 +91,13 @@ function lightBox(photographData, photographMedias){
 
     controls.forEach(arrow => {
         arrow.addEventListener("click", ()=>{
-            RefreshDomImg()
-            findCurrentImgIndex();
-            arrowVisibility(currentImgIndex);
-            //console.log(currentImgIndex);
+            
             if(arrow.classList.contains('fa-angle-left')){
                 if (currentImgIndex > 0 ) {
+
                     findImgToDisplay(domImages[currentImgIndex - 1]);
+                    refreshCurrentIndex();
+                    arrowVisibility(currentImgIndex);
                     displayImgLightbox(photographData, imgToDisplay);
                 }
                 
@@ -105,6 +105,8 @@ function lightBox(photographData, photographMedias){
                 if (currentImgIndex < domImages.length-1 ) {
 
                     findImgToDisplay(domImages[currentImgIndex + 1]);
+                    refreshCurrentIndex();
+                    arrowVisibility(currentImgIndex);
                     displayImgLightbox(photographData, imgToDisplay);
                 } 
 
@@ -113,6 +115,7 @@ function lightBox(photographData, photographMedias){
     })
 
     const findImgToDisplay = (domImg) =>{
+        refreshDomImgTab();
         for( p of photographMedias) {
             if(p.id == domImg.id){
                 imgToDisplay = p;
@@ -120,7 +123,7 @@ function lightBox(photographData, photographMedias){
         };
     }
     
-    const findCurrentImgIndex = ()=>{
+    const refreshCurrentIndex = ()=>{
         for(image of domImages){
             if(parseInt(image.id) === imgToDisplay.id){
                 currentImgIndex = domImages.indexOf(image);
@@ -129,7 +132,6 @@ function lightBox(photographData, photographMedias){
     }
 
     const arrowVisibility = (index) => {
-        console.log(index);
         if (index === 0){
             controls[0].classList.add('arrow--last');
 
@@ -159,55 +161,71 @@ function lightBox(photographData, photographMedias){
 
 }
 
-function RefreshDomImg(){
+function refreshDomImgTab(){
     domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
 }
 
 function filter(photographData,photographMedias){
     let medias = [...photographMedias];
-    console.log(medias);
-    const popularity = document.querySelector('.filter__popularity')
-    const date = document.querySelector('.filter__date')
-    const title = document.querySelector('.filter__title')
+    const inputDropdown = document.querySelector('.filter__dropdown .text-box');
+    let dropdown = document.querySelector(".filter__dropdown");
+    let dropdownInput = document.querySelector(".filter__dropdown .text-box");
 
-    popularity.addEventListener('click', ()=>{
-        medias.sort(function(a, b){return b.likes - a.likes});
-        RefreshDomImg()
-        photographMedia.innerHTML=""
-        diplayPhotographerMedia(photographData, medias);
-        lightBox(photographData, photographMedias);
+    medias.sort(function(a, b){return b.likes - a.likes});
+    inputDropdown.value = "Popularité";
+    photographMedia.innerHTML="";
+    diplayPhotographerMedia(photographData, medias);
+    lightBox(photographData, photographMedias);
+
+    document.querySelector("body").addEventListener("click",(e)=>{
+        if(dropdown.classList.contains("active") && (e.target != dropdownInput ) ){
+           dropdown.classList.remove("active");
+        }
     })
     
-    title.addEventListener('click', ()=>{
-        medias.sort(function(a, b){
-            let x = a.title.toLowerCase();
-            let y = b.title.toLowerCase();
-            if (x < y) {return -1;}
-            if (x > y) {return 1;}
-            return 0;
-        });
-        RefreshDomImg()
-        photographMedia.innerHTML=""
-        diplayPhotographerMedia(photographData, medias);
-        lightBox(photographData, photographMedias);
-    })
-    
-    date.addEventListener('click', ()=>{
-        medias.sort(function(a, b){
-            const d1 = Date.parse(a.date);
-            const d2 = Date.parse(b.date);
-            console.log(d1)
-            if (d1 < d2) {return -1;}
-            if (d1 > d2) {return 1;}
-            return 0;
-        });
-        RefreshDomImg()
-        photographMedia.innerHTML=""
-        diplayPhotographerMedia(photographData, medias);
-        lightBox(photographData, photographMedias);
-    })
+    dropdown.addEventListener("click",() =>{
+        dropdown.classList.toggle("active")
+    }) 
 
+    const options= [...document.querySelectorAll('.options div')];
+    for(const o of options){
+        o.addEventListener("click", (e)=>{
+            if(e.target.id == "popularity"){
+                medias.sort(function(a, b){return b.likes - a.likes});
+                inputDropdown.value = "Popularité"
 
+            }else if(e.target.id == "title"){
+                medias.sort(function(a, b){
+                    let x = a.title.toLowerCase();
+                    let y = b.title.toLowerCase();
+                    if (x < y) {return -1;}
+                    if (x > y) {return 1;}
+                    return 0;
+                });
+                inputDropdown.value = "Titre"
+
+            }else if(e.target.id == "date"){
+                medias.sort(function(a, b){
+                    const d1 = Date.parse(a.date);
+                    const d2 = Date.parse(b.date);
+                    if (d1 < d2) {return -1;}
+                    if (d1 > d2) {return 1;}
+                    return 0;
+                });
+                inputDropdown.value = "Date"
+            }
+
+            o.classList.add('displayed');
+            for(rest of options){
+                if(rest != o){
+                    rest.classList.remove('displayed');
+                }
+            }
+            photographMedia.innerHTML=""
+            diplayPhotographerMedia(photographData, medias);
+            lightBox(photographData, photographMedias);
+        })
+    }
 }
 
 async function main (){
