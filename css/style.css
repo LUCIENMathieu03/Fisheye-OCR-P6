@@ -224,7 +224,7 @@ header .pageTitle {
 }
 .filter .filter__dropdown {
   position: relative;
-  z-index: 10;
+  z-index: 3;
 }
 .filter .filter__dropdown i {
   position: absolute;
@@ -350,7 +350,7 @@ header .pageTitle {
 .contact_modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   left: 0;
   top: 0;
   height: 100%;
@@ -450,11 +450,10 @@ form textarea {
   z-index: 3;
   left: 0;
   top: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: #FFF;
   overflow: scroll;
-  align-items: center;
   justify-content: center;
 }
 .lightBox__open {
@@ -467,6 +466,9 @@ form textarea {
 }
 .lightBox__content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .lightBox__contentCarrousel {
   display: flex;
@@ -475,7 +477,7 @@ form textarea {
 .lightBox__contentCross {
   position: absolute;
   right: 30px;
-  top: 0px;
+  top: 30px;
 }
 .lightBox__contentIcon {
   color: #901C1C;
@@ -487,6 +489,9 @@ form textarea {
 }
 .lightBox .arrow--last {
   visibility: hidden;
+}
+.lightBox__contentCarrouselImg {
+  height: 900px;
 }
 .lightBox__contentCarrouselImg img {
   object-fit: contain;
