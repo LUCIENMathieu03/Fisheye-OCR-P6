@@ -20,11 +20,15 @@
       <div class="photograph-header"> </div>
       <div class="filter">
         <p>Trier par :</p>
-        <div>
-          <input class="button filter__popularity" type="button" value="popularité">
-          <input class="button filter__date" type="button" value="date">
-          <input class="button filter__title" type="button" value="Titre">
-        </div>
+        <div class="filter__dropdown">
+          <i class='fa-solid fa-angle-up'></i>
+          <input class="text-box" type="text" value="Popularité" readonly>
+          <div class="options">
+            <div id="popularity" class="displayed">Popularité</div>
+            <div id="date" >Date</div>
+            <div id="title">Titre</div>
+          </div>
+      </div>
       </div>
       <div class="media-section"> </div>
     </main>

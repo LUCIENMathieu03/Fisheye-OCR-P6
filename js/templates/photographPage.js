@@ -16,7 +16,7 @@ class photographPageTemplate{
     
         img.setAttribute("src", this.photographerPage.picture)
     
-        h2.textContent = this.photographerPage.name;
+        h2.textContent = this.photographerPage._name;
 
         contactButton.innerHTML = "Contactez-moi";
         contactButton.classList.add("contact_button");
