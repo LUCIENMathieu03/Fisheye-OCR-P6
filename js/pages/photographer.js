@@ -69,7 +69,6 @@ function displayLikeTjm(photographData, photographMedias){
     const likeDom = likeToDisplay.getPhotographLikeTjm();
 
     photographMedia.appendChild(likeDom);
-
 }
 
 function lightBox(photographData, photographMedias){
@@ -175,8 +174,10 @@ function filter(photographData,photographMedias){
     inputDropdown.value = "Popularité";
     photographMedia.innerHTML="";
     diplayPhotographerMedia(photographData, medias);
+    displayLikeTjm(photographData, photographMedias)
     lightBox(photographData, photographMedias);
 
+    // Close de menu by clicking outside of the element
     document.querySelector("body").addEventListener("click",(e)=>{
         if(dropdown.classList.contains("active") && (e.target != dropdownInput ) ){
            dropdown.classList.remove("active");
@@ -223,6 +224,7 @@ function filter(photographData,photographMedias){
             }
             photographMedia.innerHTML=""
             diplayPhotographerMedia(photographData, medias);
+            displayLikeTjm(photographData, photographMedias)
             lightBox(photographData, photographMedias);
         })
     }
