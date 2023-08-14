@@ -291,34 +291,41 @@ header .pageTitle {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 95px;
   margin: 100px 100px;
-  margin-top: 58px;
-  position: relative;
+  margin-top: 38px;
 }
 .media-section article {
   color: #901C1C;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
 }
-.media-section article img {
+.media-section article img, .media-section article video {
   width: 100%;
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
 }
-.media-section article video {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
+.media-section article .playButton {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: lightgray;
 }
 .media-section article .description {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
   font-size: 24px;
 }
 .media-section article .description > p {
-  padding: 10px;
+  padding-right: 10px;
 }
 .media-section article .description .likes {
   display: flex;
