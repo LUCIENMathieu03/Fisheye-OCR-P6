@@ -5,6 +5,7 @@ const photographHeader =  document.querySelector('.photograph-header');
 const photographMedia =  document.querySelector('.media-section');
 const contactButton = document.querySelector('.contact_button');
 
+let likedPhotos = 0; 
 let domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
 
 
@@ -54,6 +55,7 @@ function diplayPhotographerMedia(photographData, photographMedias){
             const thephoto = photoToDisplay.getPhotographMedia();
             photographMedia.appendChild(thephoto);
         });
+     displayLikeTjm(photographData, photographMedias);
 }
 
 function displayLikeTjm(photographData, photographMedias){
@@ -61,13 +63,16 @@ function displayLikeTjm(photographData, photographMedias){
 
     photographMedias.forEach((photo)=>{
         allLikes += parseInt(photo.likes);
-
     })
+    allLikes+=likedPhotos;
 
     const photograph = new PhotographerPage(photographData, undefined, allLikes);
     const likeToDisplay = new PhotographerTemplateFactory(photograph, "photographerPage");
     const likeDom = likeToDisplay.getPhotographLikeTjm();
 
+    if (photographMedia.querySelector('.allLikes')){
+        photographMedia.removeChild(photographMedia.querySelector('.allLikes'));
+    }
     photographMedia.appendChild(likeDom);
 }
 
@@ -113,10 +118,9 @@ function lightBox(photographData, photographMedias){
         })
     })
 
-    const findImgToDisplay = (domImg) =>{
-        refreshDomImgTab();
+    const findImgToDisplay = (imageClicked) =>{
         for( p of photographMedias) {
-            if(p.id == domImg.id){
+            if(p.id == imageClicked.id){
                 imgToDisplay = p;
             }
         };
@@ -145,10 +149,11 @@ function lightBox(photographData, photographMedias){
     }
 
     const displayImgLightbox = (photographData, imgToDisplay) => {
-        const photograph = new PhotographerPage(photographData, imgToDisplay)
-        const lightBox = new PhotographerTemplateFactory(photograph,"photographerPage");
         const title = document.querySelector('.lightBox__contentTitle');
         const lightBoxImg = document.querySelector('.lightBox__contentCarrouselImg');
+
+        const photograph = new PhotographerPage(photographData, imgToDisplay)
+        const lightBox = new PhotographerTemplateFactory(photograph,"photographerPage");
         
         const theImage = lightBox.getLightBoxImg();
         lightBoxImg.innerHTML="";
@@ -158,10 +163,10 @@ function lightBox(photographData, photographMedias){
         title.textContent= imgToDisplay.title
     }
 
-}
+    function refreshDomImgTab(){
+        domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
+    }
 
-function refreshDomImgTab(){
-    domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
 }
 
 function filter(photographData,photographMedias){
@@ -170,12 +175,14 @@ function filter(photographData,photographMedias){
     let dropdown = document.querySelector(".filter__dropdown");
     let dropdownInput = document.querySelector(".filter__dropdown .text-box");
 
+    //At first all the media is filtered by popularity
     medias.sort(function(a, b){return b.likes - a.likes});
     inputDropdown.value = "Popularité";
     photographMedia.innerHTML="";
+
     diplayPhotographerMedia(photographData, medias);
-    displayLikeTjm(photographData, photographMedias)
     lightBox(photographData, photographMedias);
+    handleLike(photographData, photographMedias);
 
     // Close de menu by clicking outside of the element
     document.querySelector("body").addEventListener("click",(e)=>{
@@ -183,7 +190,7 @@ function filter(photographData,photographMedias){
            dropdown.classList.remove("active");
         }
     })
-    
+
     dropdown.addEventListener("click",() =>{
         dropdown.classList.toggle("active")
     }) 
@@ -224,8 +231,33 @@ function filter(photographData,photographMedias){
             }
             photographMedia.innerHTML=""
             diplayPhotographerMedia(photographData, medias);
-            displayLikeTjm(photographData, photographMedias)
             lightBox(photographData, photographMedias);
+            handleLike(photographData, photographMedias)
+        })
+    }
+}
+
+function handleLike(photographData, photographMedias){
+    for(image of domImages){
+        const imageLike = image.querySelector('.description .likes')
+        imageLike.addEventListener("click", (e)=>{
+            e.stopPropagation();
+            const heart = imageLike.querySelector("i");
+            let likeNumber = imageLike.querySelector('p').innerHTML 
+
+            if( !(heart.classList.contains('heart--clicked')) ){
+                imageLike.querySelector('p').innerHTML = parseInt(likeNumber)+1;
+                imageLike.classList.add("heart--clicked")
+                heart.classList.add("heart--clicked");
+                likedPhotos +=1;
+
+            }else if( heart.classList.contains('heart--clicked') ){
+                imageLike.classList.remove("heart--clicked");
+                heart.classList.remove("heart--clicked");
+                imageLike.querySelector('p').innerHTML = parseInt(imageLike.querySelector('p').innerHTML)-1;
+                likedPhotos -=1;
+            }
+            displayLikeTjm(photographData, photographMedias);
         })
     }
 }
@@ -234,9 +266,6 @@ async function main (){
     const { photographData,  photographMedias } = await getPhotographerData();
 
     diplayPhotographerHeader(photographData);
-    diplayPhotographerMedia(photographData, photographMedias);
-    displayLikeTjm(photographData, photographMedias);
-    lightBox(photographData, photographMedias);
     filter(photographData,photographMedias)
 
 }
