@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <a href="/index.html">
+      <a href="./index.html">
         <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
       </a> 
     </header>
@@ -22,7 +22,7 @@
         <p>Trier par :</p>
         <div class="filter__dropdown">
           <i class='fa-solid fa-angle-up'></i>
-          <input class="text-box" type="text" value="Popularité" readonly>
+          <input class="text-box" type="button" value="Popularité" readonly>
           <div class="options">
             <div id="popularity" class="displayed">Popularité</div>
             <div id="date" >Date</div>
@@ -72,17 +72,21 @@
       </div>
     </div>
     <div class="lightBox">
-      <div class="lightBox__content">
-        <div class="lightBox__contentCarrousel">
-          <i class="fa-solid fa-angle-left lightBox__contentIcon arrow"></i>
-          <div class="lightBox__contentCarrouselImg">
-            <img src="assets/SamplePhotos/Marcel Nikolic/Architecture_Corner_Room.jpg">
+
+        <div class="lightBox__content">
+          
+          <div class="lightBox__contentCarrousel">
+            <i class="fa-solid fa-angle-left lightBox__contentIcon arrow"></i>
+            <div class="lightBox__contentCarrouselImg">
+              <img src="assets/SamplePhotos/Marcel Nikolic/Architecture_Corner_Room.jpg">
+            </div>
+            <i class="fa-solid fa-angle-right lightBox__contentIcon arrow"></i>
           </div>
-          <i class="fa-solid fa-angle-right lightBox__contentIcon arrow"></i>
+          <i class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross" onclick="closeLightbox()"></i>
+          <span class="lightBox__contentTitle">Titre de l'image</span>
         </div>
-        <i class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross" onclick="closeLightbox()"></i>
-        <span class="lightBox__contentTitle">Titre de l'image</span>
-      </div>
+  
+      
     </div>
     <script src="js/factories/PhotographerFactory.js"></script>
 

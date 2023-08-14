@@ -39,6 +39,7 @@ class photographPageTemplate{
         const imgDescription = document.createElement('div');
         const imageTitle = document.createElement( 'p' );
         const imagelike = document.createElement( 'span' );
+        const playButton = document.createElement('div');
         let img = null;
         let video = null;
 
@@ -48,8 +49,9 @@ class photographPageTemplate{
             article.appendChild(img);
         }else{
             video = document.createElement( 'video' );
-            video.setAttribute("controls",'')
             video.innerHTML = this.photographerPage.video;
+            playButton.innerHTML = '<i class="fa-solid fa-play playButton"></i>'
+            article.appendChild(playButton);
             article.appendChild(video);
         }
 
@@ -93,6 +95,7 @@ class photographPageTemplate{
         }else{
             let video = document.createElement( 'video' );
             video.setAttribute("controls",'')
+            video.setAttribute("autoplay",'')
             video.innerHTML = this.photographerPage.video;
             return(video);
         }   

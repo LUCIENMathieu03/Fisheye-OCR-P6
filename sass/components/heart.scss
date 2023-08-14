@@ -1,3 +1,6 @@
 .heart{
     font-size: 21px;
+    &--clicked{
+        color: lighten(#901C1C, 40%);
+    }
 }

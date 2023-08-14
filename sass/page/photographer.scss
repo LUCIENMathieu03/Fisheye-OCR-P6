@@ -37,6 +37,7 @@
     }
     
 }
+
 .filter{
     position: relative;
     margin: 0 100px;
@@ -70,6 +71,7 @@
         color: white;
         background-color: #901C1C;
         outline:none;
+        display: flex;
       }
       .filter__dropdown .options {
         position:relative;
@@ -95,9 +97,7 @@
       }
       
       .filter__dropdown .options div:hover {
-        background-color: lighten(#901C1C, 30%);
-        color: #fff;
-        border-radius: 5px;
+        text-decoration: underline;
       }
 
       .filter__dropdown.active .options {
@@ -117,35 +117,45 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 95px;
     margin: 100px 100px;
-    margin-top: 58px;
-    position: relative;
+    margin-top: 38px;
+    
 
     article{
         color: #901C1C;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        position: relative;
     }
-    article img {
+    article img, article video {
         width: 100%;
         height: 300px;
         object-fit:cover;
         border-radius: 5px;
     }
-    article video {
-        width: 100%;
-        height: 300px;
-        object-fit:cover;
-        border-radius: 5px;
-        //pointer-events: none;
+
+    article .playButton{
+        position: absolute;
+        top: 150px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color:lightgray;
     }
+
     article .description{
         display: flex;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         margin-top: 10px;
         font-size: 24px;
+
     }
     article .description > p{
-        padding: 10px;
+        padding-right: 10px;
     }
     article .description .likes{
         display: flex;
@@ -204,12 +214,12 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 669px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 35px;
-    margin: 5% auto;
+    margin: 62px auto;
 
     header {
         justify-content: space-between;
@@ -236,6 +246,44 @@
     &--open {
         animation: modalopen 0.8s both;
     }
+
+    form {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 19px;
+    
+        label {
+            color: #312E2E;
+            font-size: 36px;
+        }
+    
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: self-start;
+            margin-bottom: 26px;
+        }
+    
+        input {
+            width: 100%;
+            height: 68px;
+            border: none;
+            border-radius: 5px;
+            font-size: 36px;
+        }
+        textarea{
+            font-family: "DM Sans", sans-serif;
+            margin: 0;
+            width: 100%;
+            height: 170px;
+            border: none;
+            border-radius: 5px;
+            font-size: 36px;
+        }
+    }
 } 
 .bodyModal{ //to block the scroll of the rest of the page
     &__open{
@@ -246,75 +294,37 @@
     }
  }
 
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 19px;
-
-    label {
-        color: #312E2E;
-        font-size: 36px;
-    }
-
-    div {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: self-start;
-        margin-bottom: 26px;
-    }
-
-    input {
-        width: 100%;
-        height: 68px;
-        border: none;
-        border-radius: 5px;
-        font-size: 36px;
-    }
-    textarea{
-        font-family: "DM Sans", sans-serif;
-        margin: 0;
-        width: 100%;
-        height: 170px;
-        border: none;
-        border-radius: 5px;
-        font-size: 36px;
-    }
-}
-
 .lightBox{
+    display: none ;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #FFF;
+    overflow: auto;
+
     &__open{
-        display: flex ;
+        display: block ;
         animation: lightBoxOpen 0.5s both;
     }
     &__close{
         display: none;
         animation: lightBoxClose 0.5s both;
     }
-    display: none ;
-    position: fixed;
-    z-index: 3;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    background-color: #FFF;
-    overflow: scroll;
-    justify-content: center;
     
-
     &__content{
-        position: relative;
         display: flex;
+        position: relative;
         flex-direction: column;
         justify-content: center;
-        
+        height: 100%;
     }
     &__contentCarrousel{
         display: flex;
         align-items: center;
+        margin: 0px auto;
     }
     &__contentCross{
         position: absolute;
@@ -333,21 +343,23 @@ form {
         }
     }
     &__contentCarrouselImg{
-        height:900px;
+        width: 80vw;
+        height: 80vh;
+        display:flex;
+        align-items: center;
+        justify-content: center;
     }
-    &__contentCarrouselImg img{
-        object-fit: contain;
-        height:900px;
+    &__contentCarrouselImg img, &__contentCarrouselImg video{
+        margin: auto;
+        max-width: 80vw;
+        max-height: 80vh;
         border-radius:5px;
-    }
-    &__contentCarrouselImg video{
         object-fit: contain;
-        height:900px;
-        border-radius:5px;
     }
     &__contentTitle{
+        margin: 0px auto;
         margin-top:12px;
-        padding-left: 94px;
+        width: 80vw;
         font-weight: 400;
         font-size: 24px;
         color:#901C1C;
@@ -409,13 +421,14 @@ form {
     }
     100%{
         opacity: 1;
-        display: flex;
+        display: block;
     }
 }
+
 @keyframes lightBoxClose {
     0% {
         opacity: 1;
-        display: flex;
+        display: block;
     }
     100%{
         opacity: 0;

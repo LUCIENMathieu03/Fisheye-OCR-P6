@@ -102,6 +102,9 @@ h1 {
 .heart {
   font-size: 21px;
 }
+.heart--clicked {
+  color: #e98f8f;
+}
 
 .button {
   font-size: 20px;
@@ -245,6 +248,7 @@ header .pageTitle {
   color: white;
   background-color: #901C1C;
   outline: none;
+  display: flex;
 }
 .filter .filter__dropdown .options {
   position: relative;
@@ -269,9 +273,7 @@ header .pageTitle {
   cursor: pointer;
 }
 .filter .filter__dropdown .options div:hover {
-  background-color: #e16464;
-  color: #fff;
-  border-radius: 5px;
+  text-decoration: underline;
 }
 .filter .filter__dropdown.active .options {
   display: block;
@@ -289,34 +291,41 @@ header .pageTitle {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 95px;
   margin: 100px 100px;
-  margin-top: 58px;
-  position: relative;
+  margin-top: 38px;
 }
 .media-section article {
   color: #901C1C;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
 }
-.media-section article img {
+.media-section article img, .media-section article video {
   width: 100%;
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
 }
-.media-section article video {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
+.media-section article .playButton {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: lightgray;
 }
 .media-section article .description {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
   font-size: 24px;
 }
 .media-section article .description > p {
-  padding: 10px;
+  padding-right: 10px;
 }
 .media-section article .description .likes {
   display: flex;
@@ -371,12 +380,12 @@ header .pageTitle {
 .modal {
   border-radius: 5px;
   background-color: #DB8876;
-  width: 50%;
+  width: 669px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 35px;
-  margin: 5% auto;
+  margin: 62px auto;
   /* animation ouverture fermeture de la modale */
 }
 .modal header {
@@ -401,40 +410,32 @@ header .pageTitle {
 .modal--open {
   animation: modalopen 0.8s both;
 }
-
-.bodyModal__open {
-  overflow: hidden;
-}
-.bodyModal__close {
-  overflow: auto;
-}
-
-form {
+.modal form {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
   margin-top: 19px;
 }
-form label {
+.modal form label {
   color: #312E2E;
   font-size: 36px;
 }
-form div {
+.modal form div {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: self-start;
   margin-bottom: 26px;
 }
-form input {
+.modal form input {
   width: 100%;
   height: 68px;
   border: none;
   border-radius: 5px;
   font-size: 36px;
 }
-form textarea {
+.modal form textarea {
   font-family: "DM Sans", sans-serif;
   margin: 0;
   width: 100%;
@@ -444,20 +445,26 @@ form textarea {
   font-size: 36px;
 }
 
+.bodyModal__open {
+  overflow: hidden;
+}
+.bodyModal__close {
+  overflow: auto;
+}
+
 .lightBox {
   display: none;
   position: fixed;
   z-index: 3;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #FFF;
-  overflow: scroll;
-  justify-content: center;
+  overflow: auto;
 }
 .lightBox__open {
-  display: flex;
+  display: block;
   animation: lightBoxOpen 0.5s both;
 }
 .lightBox__close {
@@ -465,14 +472,16 @@ form textarea {
   animation: lightBoxClose 0.5s both;
 }
 .lightBox__content {
-  position: relative;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
 }
 .lightBox__contentCarrousel {
   display: flex;
   align-items: center;
+  margin: 0px auto;
 }
 .lightBox__contentCross {
   position: absolute;
@@ -491,21 +500,23 @@ form textarea {
   visibility: hidden;
 }
 .lightBox__contentCarrouselImg {
-  height: 900px;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.lightBox__contentCarrouselImg img {
-  object-fit: contain;
-  height: 900px;
+.lightBox__contentCarrouselImg img, .lightBox__contentCarrouselImg video {
+  margin: auto;
+  max-width: 80vw;
+  max-height: 80vh;
   border-radius: 5px;
-}
-.lightBox__contentCarrouselImg video {
   object-fit: contain;
-  height: 900px;
-  border-radius: 5px;
 }
 .lightBox__contentTitle {
+  margin: 0px auto;
   margin-top: 12px;
-  padding-left: 94px;
+  width: 80vw;
   font-weight: 400;
   font-size: 24px;
   color: #901C1C;
@@ -559,13 +570,13 @@ form textarea {
   }
   100% {
     opacity: 1;
-    display: flex;
+    display: block;
   }
 }
 @keyframes lightBoxClose {
   0% {
     opacity: 1;
-    display: flex;
+    display: block;
   }
   100% {
     opacity: 0;
