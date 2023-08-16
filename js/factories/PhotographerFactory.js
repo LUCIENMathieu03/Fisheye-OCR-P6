@@ -1,11 +1,11 @@
-class PhotographerTemplateFactory{
-    constructor( data , type){
-        if(type === "photographerPresentation"){
+class PhotographerTemplateFactory {
+    constructor(data, type) {
+        if (type === 'photographerPresentation') {
             return new photographerTemplate(data);
-        }else if(type === "photographerPage"){
+        } else if (type === 'photographerPage') {
             return new photographPageTemplate(data);
-        }else {
+        } else {
             throw 'Unknow format type';
-        }   
+        }
     }
 }

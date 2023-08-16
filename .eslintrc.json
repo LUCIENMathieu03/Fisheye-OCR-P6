@@ -1,0 +1,15 @@
+{
+    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+    "rules": {
+        "no-unused-vars": "off",
+        "no-undef": "off"
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+
+    "parserOptions": {
+        "ecmaVersion": 8
+    }
+}
