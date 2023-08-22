@@ -14,16 +14,21 @@ class photographerTemplate {
         description.classList.add('description');
 
         img.setAttribute('src', this.photographer.picture);
+        img.setAttribute('alt', this.photographer.name);
 
         h2.textContent = this.photographer.name;
 
         link.setAttribute('href', this.photographer.linkToPhotographerPage);
+        link.setAttribute(
+            'aria-label',
+            `Lien vers la page du photographe ${this.photographer.name}`,
+        );
 
         link.appendChild(img);
         link.appendChild(h2);
-        link.appendChild(description);
 
         article.appendChild(link);
+        article.appendChild(description);
 
         return article;
     }

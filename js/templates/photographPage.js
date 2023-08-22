@@ -7,7 +7,7 @@ class photographPageTemplate {
         const article = document.createElement('article');
         const img = document.createElement('img');
         const description = document.createElement('div');
-        const h2 = document.createElement('h2');
+        const h1 = document.createElement('h1');
         const presentationText = document.createElement('div');
         const contactButton = document.createElement('button');
 
@@ -16,15 +16,17 @@ class photographPageTemplate {
         description.classList.add('description');
 
         img.setAttribute('src', this.photographerPage.picture);
+        img.setAttribute('alt', this.photographerPage.name);
 
-        h2.textContent = this.photographerPage._name;
+        h1.textContent = this.photographerPage._name;
 
         contactButton.innerHTML = 'Contactez-moi';
         contactButton.classList.add('contact_button');
         contactButton.classList.add('button');
+        contactButton.setAttribute('aria-label', 'contact me');
         contactButton.addEventListener('click', () => displayModal());
 
-        presentationText.appendChild(h2);
+        presentationText.appendChild(h1);
         presentationText.appendChild(description);
         presentationText.classList.add('photographText');
 
@@ -47,12 +49,16 @@ class photographPageTemplate {
         if (this.photographerPage.media.image) {
             img = document.createElement('img');
             img.setAttribute('src', this.photographerPage.img);
+            img.setAttribute(
+                'alt',
+                `${this.photographerPage.mediaTitle},closeup view`,
+            );
             article.appendChild(img);
         } else {
             video = document.createElement('video');
             video.innerHTML = this.photographerPage.video;
             playButton.innerHTML =
-                '<i class="fa-solid fa-play playButton"></i>';
+                '<i class="fa-solid fa-play playButton" aria-label="play button"></i>';
             article.appendChild(playButton);
             article.appendChild(video);
         }
@@ -67,6 +73,7 @@ class photographPageTemplate {
         imgDescription.appendChild(imagelike);
 
         article.setAttribute('id', `${this.photographerPage.media.id}`);
+        article.setAttribute('tabindex', 0);
         article.appendChild(imgDescription);
 
         return article;
@@ -92,6 +99,7 @@ class photographPageTemplate {
         if (this.photographerPage.media.image) {
             let img = document.createElement('img');
             img.setAttribute('src', this.photographerPage.img);
+            img.setAttribute('alt', this.photographerPage.mediaTitle);
             return img;
         } else {
             let video = document.createElement('video');

@@ -17,15 +17,15 @@
                 <img
                     src="assets/images/logo.png"
                     class="logo"
-                    alt="fisheye logo"
+                    alt="Fisheye Home page"
                 />
             </a>
         </header>
         <main id="main">
-            <div class="photograph-header"></div>
+            <section class="photograph-header"></section>
             <div class="filter">
                 <p>Trier par :</p>
-                <div class="filter__dropdown">
+                <div class="filter__dropdown" tabindex="0">
                     <i class="fa-solid fa-angle-up"></i>
                     <input class="text-box" type="button" value="Popularité" />
                     <div class="options">
@@ -35,14 +35,19 @@
                     </div>
                 </div>
             </div>
-            <div class="media-section"></div>
+            <section class="media-section"></section>
         </main>
 
-        <div class="contact_modal">
+        <div class="contact_modal" role="dialog" aria-hidden="true">
             <div class="modal">
                 <header>
                     <h2>Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
+                    <img
+                        src="assets/icons/close.svg"
+                        aria-label="close modal"
+                        class="xcross-closeBtn"
+                        tabindex="0"
+                    />
                 </header>
                 <h2 class="photographName"></h2>
                 <form>
@@ -93,11 +98,17 @@
                 </div>
             </div>
         </div>
-        <div class="lightBox">
+        <div
+            class="lightBox"
+            aria-label="image closeup view"
+            role="dialog"
+            aria-hidden="true"
+        >
             <div class="lightBox__content">
                 <div class="lightBox__contentCarrousel">
                     <i
                         class="fa-solid fa-angle-left lightBox__contentIcon arrow"
+                        aria-label="Previous image"
                     ></i>
                     <div class="lightBox__contentCarrouselImg">
                         <img
@@ -106,10 +117,12 @@
                     </div>
                     <i
                         class="fa-solid fa-angle-right lightBox__contentIcon arrow"
+                        aria-label="Next image"
                     ></i>
                 </div>
                 <i
                     class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross"
+                    aria-label="Close dialog"
                     onclick="closeLightbox()"
                 ></i>
                 <span class="lightBox__contentTitle">Titre de l'image</span>

@@ -6,6 +6,7 @@ const firstName = document.querySelector('#first');
 const lastName = document.querySelector('#last');
 const email = document.querySelector('#email');
 const message = document.querySelector('#message');
+const crossCloseBtn = document.querySelector('.xcross-closeBtn');
 const sendButton = document.querySelector(
     '.contact_modal form .modalSendButton',
 );
@@ -23,12 +24,44 @@ function displayModal() {
 
     body.classList.remove('bodyModal__close');
     body.classList.add('bodyModal__open');
+
+    crossCloseBtn.focus();
+
+    //Mask the rest of the page for accessibility
+    for (childNode of body.children) {
+        if (
+            (childNode.nodeName == 'HEADER' ||
+                childNode.nodeName == 'MAIN' ||
+                childNode.nodeName == 'DIV') &&
+            !childNode.classList.contains('contact_modal')
+        ) {
+            childNode.setAttribute('aria-hidden', true);
+        }
+        if (childNode.classList.contains('contact_modal')) {
+            childNode.setAttribute('aria-hidden', false);
+        }
+    }
 }
 
 function closeModal() {
     modal.classList.replace('modal--open', 'modal--close');
     modalBg.classList.replace('contact_modal--open', 'contact_modal--close');
     body.classList.replace('bodyModal__open', 'bodyModal__close');
+
+    //remove: Mask the rest of the page for accessibility
+    for (childNode of body.children) {
+        if (childNode.classList.contains('contact_modal')) {
+            childNode.setAttribute('aria-hidden', true);
+        }
+        if (
+            (childNode.nodeName == 'HEADER' ||
+                childNode.nodeName == 'MAIN' ||
+                childNode.nodeName == 'DIV') &&
+            !childNode.classList.contains('contact_modal')
+        ) {
+            childNode.setAttribute('aria-hidden', false);
+        }
+    }
 }
 
 sendButton.addEventListener('click', (e) => {
@@ -109,11 +142,27 @@ sendButton.addEventListener('click', () => {
             input.value = '';
         }
         thanksModal.classList.remove('thanks--unvisible');
+        console.log(result);
     }
-    console.log(result);
 });
 
 closeButton.addEventListener('click', () => {
     closeModal();
     thanksModal.classList.add('thanks--unvisible');
+});
+
+crossCloseBtn.addEventListener('click', () => {
+    closeModal();
+});
+
+crossCloseBtn.addEventListener('keydown', (evt) => {
+    if (evt.key == 'Enter') {
+        closeModal();
+    }
+});
+
+document.addEventListener('keydown', (evt) => {
+    if (evt.key == 'Escape') {
+        closeModal();
+    }
 });

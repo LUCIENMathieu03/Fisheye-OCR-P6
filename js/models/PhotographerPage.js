@@ -38,14 +38,14 @@ class PhotographerPage {
         return `${this.media.title}`;
     }
     get mediaLikes() {
-        return `<p>${this.media.likes}</p><i class="fa-solid fa-heart heart"></i>`;
+        return `<p>${this.media.likes}</p><i class="fa-solid fa-heart heart" aria-label="likes"></i>`;
     }
 
     get allLikes() {
         return this._allLikes;
     }
     get allLikeNumber() {
-        return `<p>${this.allLikes} <i class="fa-solid fa-heart heart"></i></p>`;
+        return `<p>${this.allLikes} <i class="fa-solid fa-heart heart" aria-label="likes"></i></p>`;
     }
 
     get photographerPageDescription() {
