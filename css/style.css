@@ -90,7 +90,7 @@ body {
 }
 
 h1 {
-  color: #901C1C;
+  color: #901c1c;
   margin-right: 100px;
 }
 
@@ -103,7 +103,7 @@ h1 {
   font-size: 21px;
 }
 .heart--clicked {
-  color: #e98f8f;
+  color: #db8876;
 }
 
 .button {
@@ -114,12 +114,14 @@ h1 {
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901C1C;
+  background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
 }
 .button:hover {
-  background-color: #e16464;
+  background-color: #db8876;
+  color: black;
 }
 
 header {
@@ -134,52 +136,52 @@ header .pageTitle {
   font-size: 36px;
 }
 
-.photographer_section {
+main.photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.photographer_section article a {
+main.photographer_section article a {
   justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.photographer_section article a h2 {
-  color: #D3573C;
+main.photographer_section article a h2 {
+  color: #d3573c;
   font-size: 36px;
   margin-top: 20px;
 }
-.photographer_section article a img {
+main.photographer_section article a img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
-.photographer_section article a .description {
+main.photographer_section article .description {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 10px;
 }
-.photographer_section article a .description .firstLine {
-  color: #D3573C;
+main.photographer_section article .description .firstLine {
+  color: #d3573c;
   font-size: 13px;
 }
-.photographer_section article a .description .price {
+main.photographer_section article .description .price {
   font-size: 9px;
   color: #757575;
 }
-.photographer_section article a .description p {
+main.photographer_section article .description p {
   margin-bottom: 3px;
 }
 
 .photograph-header {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
   display: flex;
@@ -199,15 +201,15 @@ header .pageTitle {
   border-radius: 50%;
   object-fit: cover;
 }
-.photograph-header article .photographText h2 {
+.photograph-header article .photographText h1 {
   font-size: 64px;
   font-weight: 400;
-  color: #D3573C;
+  color: #d3573c;
 }
 .photograph-header article .photographText .description .firstLine {
   font-weight: 400;
   font-size: 24px;
-  color: #901C1C;
+  color: #901c1c;
 }
 .photograph-header article .photographText .description .tagLine {
   font-weight: 400;
@@ -246,7 +248,7 @@ header .pageTitle {
   padding: 23px 20px;
   border-radius: 10px;
   color: white;
-  background-color: #901C1C;
+  background-color: #901c1c;
   outline: none;
   display: flex;
 }
@@ -260,7 +262,7 @@ header .pageTitle {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   border-radius: 0px 0px 10px 10px;
   overflow: hidden;
-  background-color: #901C1C;
+  background-color: #901c1c;
   color: white;
   padding: 0px 10px 6px 10px;
   display: none;
@@ -268,7 +270,7 @@ header .pageTitle {
 .filter .filter__dropdown .options div {
   font-size: 18px;
   font-weight: 700;
-  border-top: #FFF 1px solid;
+  border-top: #fff 1px solid;
   padding: 14px 10px;
   cursor: pointer;
 }
@@ -285,6 +287,9 @@ header .pageTitle {
   top: 22px;
   transform: rotate(-180deg);
 }
+.filter .filter__dropdown :focus-visible {
+  outline: solid blue;
+}
 
 .media-section {
   display: grid;
@@ -294,7 +299,7 @@ header .pageTitle {
   margin-top: 38px;
 }
 .media-section article {
-  color: #901C1C;
+  color: #901c1c;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -302,7 +307,8 @@ header .pageTitle {
   margin-top: 20px;
   position: relative;
 }
-.media-section article img, .media-section article video {
+.media-section article img,
+.media-section article video {
   width: 100%;
   height: 300px;
   object-fit: cover;
@@ -335,7 +341,7 @@ header .pageTitle {
   margin-right: 4px;
 }
 .media-section article .description .likes svg {
-  color: #901C1C;
+  color: #901c1c;
 }
 .media-section .allLikes {
   position: fixed;
@@ -346,7 +352,7 @@ header .pageTitle {
   align-items: center;
   width: 376px;
   height: 70px;
-  background: #DB8876;
+  background: #db8876;
   border-radius: 5px 5px 0 0;
 }
 .media-section .allLikes span {
@@ -369,7 +375,7 @@ header .pageTitle {
   /* animation ouverture fermeture de la modale */
 }
 .contact_modal--close {
-  display: block;
+  display: none;
   animation: bgmodalclose 0.5s both;
 }
 .contact_modal--open {
@@ -379,13 +385,14 @@ header .pageTitle {
 
 .modal {
   border-radius: 5px;
-  background-color: #DB8876;
-  width: 669px;
+  background-color: #db8876;
+  max-width: 669px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 35px;
   margin: 62px auto;
+  position: relative;
   /* animation ouverture fermeture de la modale */
 }
 .modal header {
@@ -408,6 +415,7 @@ header .pageTitle {
   animation: reversemodalopen 0.8s both;
 }
 .modal--open {
+  display: block;
   animation: modalopen 0.8s both;
 }
 .modal form {
@@ -418,7 +426,7 @@ header .pageTitle {
   margin-top: 19px;
 }
 .modal form label {
-  color: #312E2E;
+  color: #312e2e;
   font-size: 36px;
 }
 .modal form div {
@@ -434,15 +442,73 @@ header .pageTitle {
   border: none;
   border-radius: 5px;
   font-size: 36px;
+  padding: 8px;
+  border: 0.8px solid #ccc;
+  outline: none;
 }
 .modal form textarea {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  padding: 8px;
   width: 100%;
   height: 170px;
   border: none;
   border-radius: 5px;
   font-size: 36px;
+  outline: none;
+}
+.modal form .formData[data-error]::after {
+  content: attr(data-error);
+  width: 100%;
+  font-size: 15px;
+  color: black;
+  display: block;
+  margin-top: 7px;
+  text-align: right;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
+}
+.modal form .formData[data-error-visible=true]::after {
+  opacity: 1;
+}
+.modal form .formData[data-error-visible=true] .text-control {
+  border: 2px solid #e54858;
+}
+.modal form input:focus-visible,
+.modal form textarea:focus-visible,
+.modal form .formData[data-error-visible=true] .text-control:focus-visible {
+  border: 2px solid blue;
+}
+.modal .thanks {
+  border-radius: 5px;
+  background-color: #db8876;
+  max-width: 669px;
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  font-size: 64px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: thanks 0.5s both;
+}
+.modal .thanks p {
+  margin-bottom: 20px;
+}
+.modal .thanks--unvisible {
+  display: none;
+}
+.modal .thanks .xcross-closeBtn {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
 }
 
 .bodyModal__open {
@@ -455,12 +521,12 @@ header .pageTitle {
 .lightBox {
   display: none;
   position: fixed;
-  z-index: 3;
+  z-index: 5;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #FFF;
+  background-color: #fff;
   overflow: auto;
 }
 .lightBox__open {
@@ -489,7 +555,7 @@ header .pageTitle {
   top: 30px;
 }
 .lightBox__contentIcon {
-  color: #901C1C;
+  color: #901c1c;
   font-size: 48px;
   cursor: pointer;
 }
@@ -519,7 +585,7 @@ header .pageTitle {
   width: 80vw;
   font-weight: 400;
   font-size: 24px;
-  color: #901C1C;
+  color: #901c1c;
 }
 
 @keyframes modalopen {
@@ -562,6 +628,17 @@ header .pageTitle {
     display: block;
   }
 }
+@keyframes thanks {
+  0% {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    display: flex;
+  }
+}
 @keyframes lightBoxOpen {
   0% {
     opacity: 0;
@@ -582,6 +659,30 @@ header .pageTitle {
     opacity: 0;
     display: none;
     visibility: hidden;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .photograph-header {
+    height: unset;
+    margin: 0px;
+  }
+  .photograph-header article {
+    padding: 20px 0px;
+    height: 100%;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+  .photograph-header article .photographText h2 {
+    font-size: 44px;
+  }
+  .photograph-header article * {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .media-section {
+    grid-template-columns: 1fr;
   }
 }
 

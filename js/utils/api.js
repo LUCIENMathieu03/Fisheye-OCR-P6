@@ -1,13 +1,12 @@
 class photographersApi {
-    constructor(url){
+    constructor(url) {
         this._url = url;
     }
 
-    async getPhotographers(){
+    async getPhotographers() {
         const res = await fetch(this._url);
-        const data = await res.json()
-        
+        const data = await res.json();
+
         return data;
     }
-
 }

@@ -1,0 +1,20 @@
+{
+    "name": "projet-fisheye",
+    "version": "1.0.0",
+    "description": "This is the project 6 of the openclassrooms's web developper program",
+    "main": "index.js",
+    "scripts": {
+        "sass": "sass --watch sass/main.scss css/style.css",
+        "lint": "eslint .",
+        "prettier": "prettier --write ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^8.47.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.2"
+    }
+}

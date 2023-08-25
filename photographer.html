@@ -1,102 +1,158 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <title>Fisheye - photographe</title>
-  </head>
-  <body>
-    <header>
-      <a href="./index.html">
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
-      </a> 
-    </header>
-    <main id="main">
-      <div class="photograph-header"> </div>
-      <div class="filter">
-        <p>Trier par :</p>
-        <div class="filter__dropdown">
-          <i class='fa-solid fa-angle-up'></i>
-          <input class="text-box" type="button" value="Popularité" readonly>
-          <div class="options">
-            <div id="popularity" class="displayed">Popularité</div>
-            <div id="date" >Date</div>
-            <div id="title">Titre</div>
-          </div>
-      </div>
-      </div>
-      <div class="media-section"> </div>
-    </main>
-
-    <div class="contact_modal">
-      <div class="modal">
+<!doctype html>
+<html lang="fr">
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <link
+            href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+            rel="stylesheet"
+        />
+        <title>Fisheye - photographe</title>
+    </head>
+    <body>
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+            <a href="./index.html">
+                <img
+                    src="assets/images/logo.png"
+                    class="logo"
+                    alt="Fisheye Home page"
+                />
+            </a>
         </header>
-        <h2 class="photographName"></h2>
-        <form>
-          <div>
-            <label for="first">Prénom</label>
-            <input 
-              type="text"
-              id="first"
-              name="first"/>
-          </div>
-          <div>
-            <label for="last">Nom</label>
-            <input
-              type="text"
-              id="last"
-              name="last" />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input 
-              type="email"
-              id="email"
-              name="email"/>
-          </div>
-          <div>
-            <label>Votre message</label>
-            <textarea></textarea>
-          </div>
-          
-          <button class="button modalSendButton">Envoyer</button>
-        </form>
-      </div>
-    </div>
-    <div class="lightBox">
-
-        <div class="lightBox__content">
-          
-          <div class="lightBox__contentCarrousel">
-            <i class="fa-solid fa-angle-left lightBox__contentIcon arrow"></i>
-            <div class="lightBox__contentCarrouselImg">
-              <img src="assets/SamplePhotos/Marcel Nikolic/Architecture_Corner_Room.jpg">
+        <main id="main">
+            <section class="photograph-header"></section>
+            <div class="filter">
+                <p>Trier par :</p>
+                <div class="filter__dropdown">
+                    <i class="fa-solid fa-angle-up"></i>
+                    <input class="text-box" type="button" value="Popularité" />
+                    <div class="options">
+                        <div id="popularity" class="displayed" tabindex="0">
+                            Popularité
+                        </div>
+                        <div id="date" tabindex="0">Date</div>
+                        <div id="title" tabindex="0">Titre</div>
+                    </div>
+                </div>
             </div>
-            <i class="fa-solid fa-angle-right lightBox__contentIcon arrow"></i>
-          </div>
-          <i class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross" onclick="closeLightbox()"></i>
-          <span class="lightBox__contentTitle">Titre de l'image</span>
-        </div>
-  
-      
-    </div>
-    <script src="js/factories/PhotographerFactory.js"></script>
+            <section class="media-section"></section>
+        </main>
 
-    <script src="js/models/PhotographerPage.js"></script>
-    
-    <script src="js/templates/photographPage.js"></script>
-    <script src="js/utils/lightBox.js"></script>
-    <script src="js/utils/contactForm.js"></script>
-    <script src="js/utils/api.js"></script>
-    <script src="js/pages/photographer.js"></script>
-    <script src="https://kit.fontawesome.com/2f81acc905.js" crossorigin="anonymous"></script>
-  </body>
+        <div class="contact_modal" role="dialog" aria-hidden="true">
+            <div class="modal" tabindex="-1">
+                <header>
+                    <h2>Contactez-moi</h2>
+                    <img
+                        src="assets/icons/close.svg"
+                        aria-label="close modal"
+                        class="xcross-closeBtn"
+                        tabindex="0"
+                    />
+                </header>
+                <h2 class="photographName"></h2>
+                <form>
+                    <div class="formData">
+                        <label for="first">Prénom</label>
+                        <input
+                            class="text-control"
+                            type="text"
+                            id="first"
+                            name="first"
+                        />
+                    </div>
+                    <div class="formData">
+                        <label for="last">Nom</label>
+                        <input
+                            class="text-control"
+                            type="text"
+                            id="last"
+                            name="last"
+                        />
+                    </div>
+                    <div class="formData">
+                        <label for="email">Email</label>
+                        <input
+                            class="text-control"
+                            type="email"
+                            id="email"
+                            name="email"
+                        />
+                    </div>
+                    <div class="formData">
+                        <label for="message">Votre message</label>
+                        <textarea
+                            class="text-control"
+                            id="message"
+                            name="message"
+                        ></textarea>
+                    </div>
+
+                    <button class="button modalSendButton">Envoyer</button>
+                </form>
+                <div class="thanks thanks--unvisible">
+                    <img
+                        src="assets/icons/close.svg"
+                        aria-label="close modal"
+                        class="xcross-closeBtn"
+                        tabindex="0"
+                    />
+                    <p>
+                        Merci !<br />
+                        Votre message a été envoyer.
+                    </p>
+                    <input
+                        type="button"
+                        class="btn-close button"
+                        value="Fermer"
+                        tabindex="0"
+                    />
+                </div>
+            </div>
+        </div>
+        <div
+            class="lightBox"
+            aria-label="image closeup view"
+            role="dialog"
+            aria-hidden="true"
+        >
+            <div class="lightBox__content">
+                <i
+                    class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross"
+                    aria-label="Close dialog"
+                    tabindex="0"
+                ></i>
+                <div class="lightBox__contentCarrousel">
+                    <i
+                        class="fa-solid fa-angle-left lightBox__contentIcon arrow"
+                        aria-label="Previous image"
+                        tabindex="0"
+                    ></i>
+                    <div class="lightBox__contentCarrouselImg">
+                        <img
+                            src="assets/SamplePhotos/Marcel Nikolic/Architecture_Corner_Room.jpg"
+                        />
+                    </div>
+                    <i
+                        class="fa-solid fa-angle-right lightBox__contentIcon arrow"
+                        aria-label="Next image"
+                        tabindex="0"
+                    ></i>
+                </div>
+                <span class="lightBox__contentTitle">Titre de l'image</span>
+            </div>
+        </div>
+        <script src="js/factories/PhotographerFactory.js"></script>
+        <script src="js/models/PhotographerPage.js"></script>
+        <script src="js/templates/photographPage.js"></script>
+        <script src="js/utils/lightBox.js"></script>
+        <script src="js/utils/contactForm.js"></script>
+        <script src="js/utils/api.js"></script>
+        <script src="js/pages/photographer.js"></script>
+        <script
+            src="https://kit.fontawesome.com/2f81acc905.js"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>
