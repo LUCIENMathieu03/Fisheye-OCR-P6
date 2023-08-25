@@ -109,6 +109,10 @@
         top: 22px;
         transform: rotate(-180deg);
     }
+
+    .filter__dropdown :focus-visible {
+        outline: solid blue;
+    }
 }
 
 .media-section {
@@ -199,7 +203,7 @@
 
     /* animation ouverture fermeture de la modale */
     &--close {
-        display: block;
+        display: none;
         animation: bgmodalclose 0.5s both;
     }
     &--open {
@@ -242,6 +246,7 @@
         animation: reversemodalopen 0.8s both;
     }
     &--open {
+        display: block;
         animation: modalopen 0.8s both;
     }
 
@@ -304,6 +309,12 @@
         .formData[data-error-visible='true'] .text-control {
             border: 2px solid #e54858;
         }
+
+        input:focus-visible,
+        textarea:focus-visible,
+        .formData[data-error-visible='true'] .text-control:focus-visible {
+            border: 2px solid blue;
+        }
     }
 
     .thanks {
@@ -331,6 +342,12 @@
     }
     .thanks--unvisible {
         display: none;
+    }
+    .thanks .xcross-closeBtn {
+        position: absolute;
+        top: 35px;
+        right: 35px;
+        cursor: pointer;
     }
 }
 
@@ -460,6 +477,7 @@
         display: block;
     }
 }
+
 @keyframes thanks {
     0% {
         opacity: 0;

@@ -206,41 +206,16 @@ function filter(photographData, photographMedias) {
         dropdown.classList.toggle('active');
     });
 
+    dropdown.addEventListener('keydown', (e) => {
+        if (e.key == 'Enter' || e.key == 'Escape') {
+            dropdown.classList.remove('active');
+        }
+    });
+
     const options = [...document.querySelectorAll('.options div')];
     for (const o of options) {
         o.addEventListener('click', (e) => {
-            if (e.target.id == 'popularity') {
-                medias.sort(function (a, b) {
-                    return b.likes - a.likes;
-                });
-                inputDropdown.value = 'Popularité';
-            } else if (e.target.id == 'title') {
-                medias.sort(function (a, b) {
-                    let x = a.title.toLowerCase();
-                    let y = b.title.toLowerCase();
-                    if (x < y) {
-                        return -1;
-                    }
-                    if (x > y) {
-                        return 1;
-                    }
-                    return 0;
-                });
-                inputDropdown.value = 'Titre';
-            } else if (e.target.id == 'date') {
-                medias.sort(function (a, b) {
-                    const d1 = Date.parse(a.date);
-                    const d2 = Date.parse(b.date);
-                    if (d1 < d2) {
-                        return -1;
-                    }
-                    if (d1 > d2) {
-                        return 1;
-                    }
-                    return 0;
-                });
-                inputDropdown.value = 'Date';
-            }
+            filterMediaTab(e);
 
             o.classList.add('displayed');
             for (rest of options) {
@@ -248,12 +223,87 @@ function filter(photographData, photographMedias) {
                     rest.classList.remove('displayed');
                 }
             }
-            photographMedia.innerHTML = '';
-            diplayPhotographerMedia(photographData, medias);
-            lightBox(photographData, photographMedias);
-            handleLike(photographData, photographMedias);
+        });
+        o.addEventListener('keydown', (e) => {
+            if (e.key == 'Enter') {
+                filterMediaTab(e);
+
+                o.classList.add('displayed');
+                for (rest of options) {
+                    if (rest != o) {
+                        rest.classList.remove('displayed');
+                    }
+                }
+            }
         });
     }
+
+    function filterMediaTab(e) {
+        if (e.target.id == 'popularity') {
+            medias.sort(function (a, b) {
+                return b.likes - a.likes;
+            });
+            inputDropdown.value = 'Popularité';
+        } else if (e.target.id == 'title') {
+            medias.sort(function (a, b) {
+                let x = a.title.toLowerCase();
+                let y = b.title.toLowerCase();
+                if (x < y) {
+                    return -1;
+                }
+                if (x > y) {
+                    return 1;
+                }
+                return 0;
+            });
+            inputDropdown.value = 'Titre';
+        } else if (e.target.id == 'date') {
+            medias.sort(function (a, b) {
+                const d1 = Date.parse(a.date);
+                const d2 = Date.parse(b.date);
+                if (d1 < d2) {
+                    return -1;
+                }
+                if (d1 > d2) {
+                    return 1;
+                }
+                return 0;
+            });
+            inputDropdown.value = 'Date';
+        }
+
+        photographMedia.innerHTML = '';
+        diplayPhotographerMedia(photographData, medias);
+        lightBox(photographData, photographMedias);
+        handleLike(photographData, photographMedias);
+    }
+
+    //Accessibility navigation
+    dropdown.addEventListener('keydown', (e) => {
+        let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+        let focusableElement = dropdown.querySelectorAll('input, .options div');
+        let firstFocusableElement = focusableElement[0];
+        let lastFocusableElement =
+            focusableElement[focusableElement.length - 1];
+
+        if (!isTabPressed && dropdown.classList.contains('active')) {
+            return;
+        }
+
+        if (e.shiftKey && dropdown.classList.contains('active')) {
+            // if shift + tab
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus(); // add focus on last focusable element
+                e.preventDefault();
+            }
+        } else {
+            // if tab pressed
+            if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus(); // add focus for the first focusable element
+                e.preventDefault();
+            }
+        }
+    });
 }
 
 function handleLike(photographData, photographMedias) {

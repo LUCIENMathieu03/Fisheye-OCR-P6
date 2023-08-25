@@ -25,13 +25,15 @@
             <section class="photograph-header"></section>
             <div class="filter">
                 <p>Trier par :</p>
-                <div class="filter__dropdown" tabindex="0">
+                <div class="filter__dropdown">
                     <i class="fa-solid fa-angle-up"></i>
                     <input class="text-box" type="button" value="Popularité" />
                     <div class="options">
-                        <div id="popularity" class="displayed">Popularité</div>
-                        <div id="date">Date</div>
-                        <div id="title">Titre</div>
+                        <div id="popularity" class="displayed" tabindex="0">
+                            Popularité
+                        </div>
+                        <div id="date" tabindex="0">Date</div>
+                        <div id="title" tabindex="0">Titre</div>
                     </div>
                 </div>
             </div>
@@ -39,7 +41,7 @@
         </main>
 
         <div class="contact_modal" role="dialog" aria-hidden="true">
-            <div class="modal">
+            <div class="modal" tabindex="-1">
                 <header>
                     <h2>Contactez-moi</h2>
                     <img
@@ -90,11 +92,22 @@
                     <button class="button modalSendButton">Envoyer</button>
                 </form>
                 <div class="thanks thanks--unvisible">
+                    <img
+                        src="assets/icons/close.svg"
+                        aria-label="close modal"
+                        class="xcross-closeBtn"
+                        tabindex="0"
+                    />
                     <p>
                         Merci !<br />
                         Votre message a été envoyer.
                     </p>
-                    <input class="btn-close button" value="Fermer" />
+                    <input
+                        type="button"
+                        class="btn-close button"
+                        value="Fermer"
+                        tabindex="0"
+                    />
                 </div>
             </div>
         </div>

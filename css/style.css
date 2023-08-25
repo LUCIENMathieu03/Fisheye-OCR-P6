@@ -287,6 +287,9 @@ header .pageTitle {
   top: 22px;
   transform: rotate(-180deg);
 }
+.filter .filter__dropdown :focus-visible {
+  outline: solid blue;
+}
 
 .media-section {
   display: grid;
@@ -372,7 +375,7 @@ header .pageTitle {
   /* animation ouverture fermeture de la modale */
 }
 .contact_modal--close {
-  display: block;
+  display: none;
   animation: bgmodalclose 0.5s both;
 }
 .contact_modal--open {
@@ -412,6 +415,7 @@ header .pageTitle {
   animation: reversemodalopen 0.8s both;
 }
 .modal--open {
+  display: block;
   animation: modalopen 0.8s both;
 }
 .modal form {
@@ -471,6 +475,11 @@ header .pageTitle {
 .modal form .formData[data-error-visible=true] .text-control {
   border: 2px solid #e54858;
 }
+.modal form input:focus-visible,
+.modal form textarea:focus-visible,
+.modal form .formData[data-error-visible=true] .text-control:focus-visible {
+  border: 2px solid blue;
+}
 .modal .thanks {
   border-radius: 5px;
   background-color: #db8876;
@@ -494,6 +503,12 @@ header .pageTitle {
 }
 .modal .thanks--unvisible {
   display: none;
+}
+.modal .thanks .xcross-closeBtn {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
 }
 
 .bodyModal__open {
