@@ -4,6 +4,7 @@ const photographerId = urlParams.get('id');
 const photographHeader = document.querySelector('.photograph-header');
 const photographMedia = document.querySelector('.media-section');
 const contactButton = document.querySelector('.contact_button');
+const lightBoxItem = document.querySelector('.lightBox');
 
 let likedPhotos = 0;
 let domImages = [...document.querySelectorAll('.media-section article')]; // done this way to manipulate the elements in a array
@@ -94,24 +95,45 @@ function lightBox(photographData, photographMedias) {
 
     domImages.forEach((image) => {
         image.addEventListener('click', (e) => {
-            findImgToDisplay(image);
-            refreshCurrentIndex();
-            arrowVisibility(currentImgIndex);
-            displayLightBox();
-            displayImgLightbox(photographData, imgToDisplay);
+            domImagesEventFuctions(image);
+        });
+        image.addEventListener('keydown', (e) => {
+            if (e.key == 'Enter') {
+                domImagesEventFuctions(image);
+            }
         });
     });
 
+    function domImagesEventFuctions(image) {
+        findImgToDisplay(image);
+        refreshCurrentIndex();
+        arrowVisibility(currentImgIndex);
+        displayLightBox();
+        displayImgLightbox(photographData, imgToDisplay);
+    }
+
     controls.forEach((arrow) => {
         arrow.addEventListener('click', () => {
-            if (arrow.classList.contains('fa-angle-left')) {
+            arrowEventFunctions(arrow);
+        });
+
+        arrow.addEventListener('keydown', (e) => {
+            if (e.key == 'Enter') {
+                arrowEventFunctions(arrow);
+            }
+        });
+    });
+    // keyboard arrow navigation
+    document.addEventListener('keydown', (e) => {
+        if (lightBoxItem.classList.contains('lightBox__open')) {
+            if (e.key == 'ArrowLeft') {
                 if (currentImgIndex > 0) {
                     findImgToDisplay(domImages[currentImgIndex - 1]);
                     refreshCurrentIndex();
                     arrowVisibility(currentImgIndex);
                     displayImgLightbox(photographData, imgToDisplay);
                 }
-            } else if (arrow.classList.contains('fa-angle-right')) {
+            } else if (e.key == 'ArrowRight') {
                 if (currentImgIndex < domImages.length - 1) {
                     findImgToDisplay(domImages[currentImgIndex + 1]);
                     refreshCurrentIndex();
@@ -119,8 +141,26 @@ function lightBox(photographData, photographMedias) {
                     displayImgLightbox(photographData, imgToDisplay);
                 }
             }
-        });
+        }
     });
+
+    function arrowEventFunctions(arrow) {
+        if (arrow.classList.contains('fa-angle-left')) {
+            if (currentImgIndex > 0) {
+                findImgToDisplay(domImages[currentImgIndex - 1]);
+                refreshCurrentIndex();
+                arrowVisibility(currentImgIndex);
+                displayImgLightbox(photographData, imgToDisplay);
+            }
+        } else if (arrow.classList.contains('fa-angle-right')) {
+            if (currentImgIndex < domImages.length - 1) {
+                findImgToDisplay(domImages[currentImgIndex + 1]);
+                refreshCurrentIndex();
+                arrowVisibility(currentImgIndex);
+                displayImgLightbox(photographData, imgToDisplay);
+            }
+        }
+    }
 
     const findImgToDisplay = (imageClicked) => {
         for (p of photographMedias) {

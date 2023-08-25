@@ -136,47 +136,47 @@ header .pageTitle {
   font-size: 36px;
 }
 
-.photographer_section {
+main.photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.photographer_section article a {
+main.photographer_section article a {
   justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.photographer_section article a h2 {
+main.photographer_section article a h2 {
   color: #d3573c;
   font-size: 36px;
   margin-top: 20px;
 }
-.photographer_section article a img {
+main.photographer_section article a img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
-.photographer_section article .description {
+main.photographer_section article .description {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 10px;
 }
-.photographer_section article .description .firstLine {
+main.photographer_section article .description .firstLine {
   color: #d3573c;
   font-size: 13px;
 }
-.photographer_section article .description .price {
+main.photographer_section article .description .price {
   font-size: 9px;
   color: #757575;
 }
-.photographer_section article .description p {
+main.photographer_section article .description p {
   margin-bottom: 3px;
 }
 

@@ -118,10 +118,16 @@
             aria-hidden="true"
         >
             <div class="lightBox__content">
+                <i
+                    class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross"
+                    aria-label="Close dialog"
+                    tabindex="0"
+                ></i>
                 <div class="lightBox__contentCarrousel">
                     <i
                         class="fa-solid fa-angle-left lightBox__contentIcon arrow"
                         aria-label="Previous image"
+                        tabindex="0"
                     ></i>
                     <div class="lightBox__contentCarrouselImg">
                         <img
@@ -131,13 +137,9 @@
                     <i
                         class="fa-solid fa-angle-right lightBox__contentIcon arrow"
                         aria-label="Next image"
+                        tabindex="0"
                     ></i>
                 </div>
-                <i
-                    class="fa-solid fa-xmark lightBox__contentIcon lightBox__contentCross"
-                    aria-label="Close dialog"
-                    onclick="closeLightbox()"
-                ></i>
                 <span class="lightBox__contentTitle">Titre de l'image</span>
             </div>
         </div>
